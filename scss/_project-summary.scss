@@ -23,11 +23,14 @@
       .search-bar {
         width: 100%;
         border: 1px solid $light-border;
-        padding: 1.2rem;
-        padding-left: 3.5rem;
+        padding: 1.2rem;  
+        padding-left: 4rem;
         border-radius: 50px;
         &::placeholder {
           color: #b1b1b1;
+        }
+        @include response(phone) {
+          padding-left: 5rem;
         }
         @include response(s-3-phone) {
           width: 70%;
@@ -42,8 +45,12 @@
         top: 30%;
         left: 0;
         font-size: 1.5rem;
-        transform: translateX(15px);
-        color: #b1b1b1;
+        transform: translateX(15px); 
+        color: #b1b1b1;   
+        @include response(phone){
+          font-size: 2rem;
+          transform:translateX(15px) translateY(-10%);
+        }
       }
     }
   }
@@ -224,7 +231,7 @@
                     color: black;
                     position: absolute;
                     font-size: 1.2rem;
-                    top:20%;
+                    top: 20%;
                     left: 20%;
                   }
                 }
