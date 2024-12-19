@@ -1,0 +1,885 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+  @media (max-width: 1230px) {
+    html {
+      font-size: 60%; } }
+  @media (max-width: 770px) {
+    html {
+      font-size: 45.7%; } }
+
+body {
+  font-family: "Poppins";
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: minmax(0, 1fr); }
+  @media (max-width: 370px) {
+    body {
+      grid-template-columns: max-content 1fr; } }
+
+main {
+  grid-column: 2/-1;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  max-width: 100%; }
+  @media (max-width: 1185px) {
+    main {
+      grid-template-columns: minmax(0, 1fr); } }
+
+.navigation {
+  display: flex;
+  grid-column: 1/2;
+  height: 100%;
+  position: relative; }
+  @media (max-width: 770px) {
+    .navigation .side-navigation:has(.nav-li.active-li:not(:hover)) .side-nav .nav-li.active-li .side-nav-icon {
+      color: #5a5a5a; } }
+  @media (max-width: 770px) {
+    .navigation .side-navigation:has(.nav-li.active-li:hover) ~ .sub-menu-nav {
+      display: block;
+      opacity: 1;
+      position: absolute;
+      right: 0%;
+      pointer-events: auto;
+      gap: 3rem;
+      transform: translateX(100%);
+      height: 100%; }
+      .navigation .side-navigation:has(.nav-li.active-li:hover) ~ .sub-menu-nav .sub-menu {
+        margin-top: 3rem; } }
+  .navigation .side-navigation {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fcfcfc;
+    padding-top: 1rem;
+    padding-bottom: 1rem; }
+    .navigation .side-navigation .logo-div {
+      border-bottom: 1px solid #e2e1e1;
+      padding-bottom: 1.6rem;
+      align-self: stretch;
+      display: flex;
+      justify-content: center; }
+      @media (max-width: 1056px) {
+        .navigation .side-navigation .logo-div {
+          padding-bottom: 1.7rem; } }
+      @media (max-width: 770px) {
+        .navigation .side-navigation .logo-div {
+          padding-bottom: 1.4rem; } }
+      .navigation .side-navigation .logo-div .side-nav-logo-img {
+        height: 3.8rem;
+        width: 3.8rem;
+        transform: rotate(90deg); }
+    .navigation .side-navigation .side-nav {
+      font-size: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .navigation .side-navigation .side-nav .nav-li {
+        padding: 1.5rem 2rem;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        transition: background-color 0.4s; }
+        .navigation .side-navigation .side-nav .nav-li:hover {
+          background-color: #F2ECE2; }
+        .navigation .side-navigation .side-nav .nav-li .side-nav-icon {
+          color: #5a5a5a;
+          transition: color 0.4s; }
+          .navigation .side-navigation .side-nav .nav-li .side-nav-icon:hover {
+            color: black;
+            cursor: pointer; }
+        .navigation .side-navigation .side-nav .nav-li:hover + .sub-menu-nav {
+          display: block; }
+      .navigation .side-navigation .side-nav .nav-li.active-li {
+        background-color: #F2ECE2; }
+        .navigation .side-navigation .side-nav .nav-li.active-li .side-nav-icon {
+          color: #171716; }
+        @media (max-width: 770px) {
+          .navigation .side-navigation .side-nav .nav-li.active-li {
+            background-color: #fcfcfc; }
+            .navigation .side-navigation .side-nav .nav-li.active-li .side-nav-icon {
+              color: #9D9D9D; }
+            .navigation .side-navigation .side-nav .nav-li.active-li:hover {
+              background-color: #F2ECE2; }
+              .navigation .side-navigation .side-nav .nav-li.active-li:hover .side-nav-icon {
+                color: #171716; } }
+    .navigation .side-navigation .side-nav-help {
+      font-size: 1.5rem;
+      text-decoration: none;
+      background-color: #171716;
+      border-radius: 50%;
+      color: #fcfcfc;
+      padding: 3px 1rem;
+      transition: all 0.4s; }
+      .navigation .side-navigation .side-nav-help:hover {
+        background-color: #fcfcfc;
+        color: black; }
+  .navigation .sub-menu-nav {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    z-index: 10000;
+    transition: opacity 0.5s;
+    padding-top: 1rem;
+    background-color: #F2ECE2; }
+    @media (max-width: 1300px) {
+      .navigation .sub-menu-nav {
+        width: 250px; } }
+    @media (max-width: 770px) {
+      .navigation .sub-menu-nav {
+        display: none;
+        opacity: 0;
+        width: 200px; } }
+    .navigation .sub-menu-nav .sub-menu-heading {
+      border-bottom: 1px solid #e2e1e1;
+      padding-bottom: 1rem;
+      max-height: max-content; }
+      .navigation .sub-menu-nav .sub-menu-heading .logo-name {
+        font-size: 2.3rem;
+        font-weight: 600;
+        text-transform: capitalize;
+        padding-left: 2.5rem; }
+      .navigation .sub-menu-nav .sub-menu-heading .heading-secondary {
+        font-size: 1rem;
+        text-transform: capitalize;
+        font-weight: 500;
+        display: block;
+        margin-top: -5px;
+        padding-left: 2.5rem; }
+    .navigation .sub-menu-nav .sub-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem; }
+      .navigation .sub-menu-nav .sub-menu .sub-menu-links {
+        list-style: none;
+        font-size: 1.4rem;
+        font-weight: 600;
+        text-transform: capitalize; }
+        .navigation .sub-menu-nav .sub-menu .sub-menu-links:hover {
+          cursor: pointer; }
+          .navigation .sub-menu-nav .sub-menu .sub-menu-links:hover .open-menu-li {
+            display: block;
+            height: auto; }
+            .navigation .sub-menu-nav .sub-menu .sub-menu-links:hover .open-menu-li .open-menu-links .open-link-names {
+              opacity: 1; }
+        .navigation .sub-menu-nav .sub-menu .sub-menu-links .closed-menu-li {
+          display: flex;
+          justify-content: space-between;
+          align-items: center; }
+          .navigation .sub-menu-nav .sub-menu .sub-menu-links .closed-menu-li .right-icon {
+            transition: transform 0.3s; }
+          .navigation .sub-menu-nav .sub-menu .sub-menu-links .closed-menu-li:hover .right-icon {
+            transform: rotate(90deg); }
+        .navigation .sub-menu-nav .sub-menu .sub-menu-links .open-menu-li {
+          display: none;
+          height: 0%;
+          padding: 1rem;
+          transform: translateX(1rem);
+          font-weight: normal;
+          font-size: 1.2rem;
+          flex-shrink: 1;
+          transition: height 0.5s; }
+          @media (max-width: 770px) {
+            .navigation .sub-menu-nav .sub-menu .sub-menu-links .open-menu-li {
+              height: auto;
+              display: block; } }
+          .navigation .sub-menu-nav .sub-menu .sub-menu-links .open-menu-li .open-menu-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem; }
+            .navigation .sub-menu-nav .sub-menu .sub-menu-links .open-menu-li .open-menu-links .open-link-names {
+              opacity: 0;
+              transition: opacity 0.5s 0.1s;
+              width: 80%;
+              color: #515151; }
+              @media (max-width: 770px) {
+                .navigation .sub-menu-nav .sub-menu .sub-menu-links .open-menu-li .open-menu-links .open-link-names {
+                  opacity: 1; } }
+              .navigation .sub-menu-nav .sub-menu .sub-menu-links .open-menu-li .open-menu-links .open-link-names:hover {
+                cursor: pointer;
+                color: black; }
+            .navigation .sub-menu-nav .sub-menu .sub-menu-links .open-menu-li .open-menu-links .open-link-names:last-child {
+              font-weight: 600;
+              color: #171716; }
+
+.project-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 2rem 3rem;
+  padding-bottom: 2rem;
+  max-height: 100%; }
+  @media (max-width: 460px) {
+    .project-summary {
+      padding-left: 1rem;
+      padding-right: 1rem; } }
+  .project-summary .header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; }
+    .project-summary .header .date {
+      font-size: 1.7rem;
+      font-weight: 600;
+      text-transform: capitalize; }
+    .project-summary .header .search {
+      position: relative; }
+      .project-summary .header .search .search-bar {
+        width: 100%;
+        border: 1px solid #f1ede8;
+        padding: 1.2rem;
+        padding-left: 3.5rem;
+        border-radius: 50px; }
+        .project-summary .header .search .search-bar::placeholder {
+          color: #b1b1b1; }
+        @media (max-width: 460px) {
+          .project-summary .header .search .search-bar {
+            width: 70%; } }
+        .project-summary .header .search .search-bar:focus {
+          outline: none;
+          border: 1px solid #f29e70; }
+      .project-summary .header .search .search-icon {
+        position: absolute;
+        top: 30%;
+        left: 0;
+        font-size: 1.5rem;
+        transform: translateX(15px);
+        color: #b1b1b1; }
+  .project-summary .recent-reminder {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 3px;
+    flex-basis: 100%;
+    overflow-y: auto;
+    gap: 2rem; }
+    .project-summary .recent-reminder::-webkit-scrollbar {
+      width: 2px; }
+    .project-summary .recent-reminder::-webkit-scrollbar-thumb {
+      background-color: lightgray;
+      border-radius: 10px; }
+    .project-summary .recent-reminder::-webkit-scrollbar-track {
+      background-color: white; }
+  .project-summary .recent-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-basis: auto;
+    flex-grow: 0;
+    height: auto;
+    flex-shrink: 0; }
+    @media (max-width: 1230px) {
+      .project-summary .recent-projects {
+        height: 67%; } }
+    @media (max-width: 1230px) {
+      .project-summary .recent-projects {
+        height: 75%; } }
+    .project-summary .recent-projects__header {
+      display: flex;
+      justify-content: space-between; }
+      .project-summary .recent-projects__header .recent-heading {
+        font-size: 1.5rem;
+        color: #171716;
+        font-weight: 600;
+        text-transform: capitalize; }
+      .project-summary .recent-projects__header .recent-view-all {
+        text-decoration: none;
+        color: #f29e70;
+        font-size: 1.2rem;
+        text-transform: capitalize;
+        transition: all 0.4s; }
+        .project-summary .recent-projects__header .recent-view-all:hover {
+          text-decoration: underline; }
+    .project-summary .recent-projects__all-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      justify-content: space-between;
+      max-height: 100%;
+      padding-right: 5px; }
+      @media (max-width: 1230px) {
+        .project-summary .recent-projects__all-cards {
+          max-height: 100%;
+          overflow-y: scroll;
+          grid-template-columns: 1fr;
+          grid-auto-rows: max-content; } }
+      .project-summary .recent-projects__all-cards .recent-projects-cards {
+        padding: 3rem;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 10rem; }
+        .project-summary .recent-projects__all-cards .recent-projects-cards .card-top {
+          display: flex;
+          flex-direction: column;
+          gap: 3rem; }
+          .project-summary .recent-projects__all-cards .recent-projects-cards .card-top .img-opts {
+            display: flex;
+            justify-content: space-between; }
+            .project-summary .recent-projects__all-cards .recent-projects-cards .card-top .img-opts .client-card-imgs .client-img {
+              box-sizing: content-box;
+              height: 3rem;
+              width: 3rem;
+              object-fit: cover;
+              border-radius: 50%;
+              position: relative; }
+              .project-summary .recent-projects__all-cards .recent-projects-cards .card-top .img-opts .client-card-imgs .client-img:not(:first-child) {
+                margin-left: -1.5rem; }
+              .project-summary .recent-projects__all-cards .recent-projects-cards .card-top .img-opts .client-card-imgs .client-img:first-child {
+                z-index: 100;
+                display: inline-block;
+                background-color: black;
+                position: relative; }
+              .project-summary .recent-projects__all-cards .recent-projects-cards .card-top .img-opts .client-card-imgs .client-img:nth-child(2) {
+                z-index: 90; }
+            .project-summary .recent-projects__all-cards .recent-projects-cards .card-top .img-opts .card-opts {
+              background-color: transparent;
+              border: none;
+              font-size: 1.5rem;
+              font-weight: 800;
+              display: flex;
+              flex-direction: column;
+              border: 2px solid transparent;
+              border-radius: 5px;
+              gap: 0px; }
+              .project-summary .recent-projects__all-cards .recent-projects-cards .card-top .img-opts .card-opts span:last-child {
+                margin-top: -1rem; }
+          .project-summary .recent-projects__all-cards .recent-projects-cards .card-top .project-name-deadline {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem; }
+            .project-summary .recent-projects__all-cards .recent-projects-cards .card-top .project-name-deadline .project-name {
+              font-size: 1.7rem;
+              text-transform: capitalize;
+              font-weight: 600; }
+            .project-summary .recent-projects__all-cards .recent-projects-cards .card-top .project-name-deadline .deadline {
+              display: block;
+              text-transform: capitalize;
+              font-weight: 500;
+              font-size: 1rem; }
+        .project-summary .recent-projects__all-cards .recent-projects-cards .project-progress {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem; }
+          .project-summary .recent-projects__all-cards .recent-projects-cards .project-progress .progress-label {
+            font-size: 1.1rem;
+            color: #42322b;
+            font-weight: 450; }
+          .project-summary .recent-projects__all-cards .recent-projects-cards .project-progress .progress {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 10px;
+            background-color: #e0e0e0; }
+      .project-summary .recent-projects__all-cards .recent-projects-cards.cream {
+        background-color: #FCE6BD; }
+        .project-summary .recent-projects__all-cards .recent-projects-cards.cream .card-opts:hover {
+          border: 2px solid #b27708;
+          cursor: pointer; }
+        .project-summary .recent-projects__all-cards .recent-projects-cards.cream .card-top .img-opts .client-card-imgs .client-img {
+          border: 2px solid #FCE6BD; }
+          .project-summary .recent-projects__all-cards .recent-projects-cards.cream .card-top .img-opts .client-card-imgs .client-img:first-child {
+            background-color: #FCE6BD;
+            border: 2px solid black; }
+            .project-summary .recent-projects__all-cards .recent-projects-cards.cream .card-top .img-opts .client-card-imgs .client-img:first-child::before {
+              content: "+3";
+              font-weight: 600;
+              color: black;
+              position: absolute;
+              font-size: 1.2rem;
+              top: 20%;
+              left: 20%; }
+        .project-summary .recent-projects__all-cards .recent-projects-cards.cream .progress::-webkit-progress-bar {
+          background-color: #d6c4a1;
+          border-radius: 1rem; }
+        .project-summary .recent-projects__all-cards .recent-projects-cards.cream .progress::-webkit-progress-value {
+          background-color: #000000;
+          border-radius: 1rem; }
+      .project-summary .recent-projects__all-cards .recent-projects-cards.peach {
+        background-color: #FCBEA4; }
+        .project-summary .recent-projects__all-cards .recent-projects-cards.peach .card-opts:hover {
+          border: 2px solid #9c3205;
+          cursor: pointer; }
+        .project-summary .recent-projects__all-cards .recent-projects-cards.peach .card-top .img-opts .client-card-imgs .client-img {
+          border: 2px solid #FCBEA4; }
+          .project-summary .recent-projects__all-cards .recent-projects-cards.peach .card-top .img-opts .client-card-imgs .client-img:first-child::before {
+            content: "+2";
+            color: white;
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            font-size: 1.2rem; }
+        .project-summary .recent-projects__all-cards .recent-projects-cards.peach .progress::-webkit-progress-bar {
+          background-color: #d6a28b;
+          border-radius: 1rem; }
+        .project-summary .recent-projects__all-cards .recent-projects-cards.peach .progress::-webkit-progress-value {
+          background-color: #000000;
+          border-radius: 1rem; }
+
+.reminders {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 1rem; }
+  .reminders__heading {
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-transform: capitalize; }
+  .reminders__cards .reminder-content {
+    border: 1px solid #f1ede8;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; }
+    .reminders__cards .reminder-content .reminder-time {
+      color: #757575;
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: capitalize; }
+    .reminders__cards .reminder-content .reminder-name-set {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-height: max-content; }
+      .reminders__cards .reminder-content .reminder-name-set .reminder-name {
+        font-weight: 650;
+        text-transform: capitalize;
+        font-size: 1.5rem;
+        flex-basis: 40%;
+        align-self: flex-start; }
+        @media (max-width: 1300px) {
+          .reminders__cards .reminder-content .reminder-name-set .reminder-name {
+            flex-basis: 60%; } }
+        @media (max-width: 460px) {
+          .reminders__cards .reminder-content .reminder-name-set .reminder-name {
+            flex-basis: 90%; } }
+      .reminders__cards .reminder-content .reminder-name-set .set-reminder {
+        text-transform: capitalize;
+        background-color: transparent;
+        border: 2px dashed #f29e70;
+        padding: 1rem 1.5rem;
+        align-self: flex-start;
+        border-radius: 20px;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.5s; }
+        .reminders__cards .reminder-content .reminder-name-set .set-reminder:hover {
+          background-color: #F0894D;
+          border: 2px dashed #fcfcfc;
+          cursor: pointer;
+          color: #fcfcfc; }
+        @media (max-width: 1185px) {
+          .reminders__cards .reminder-content .reminder-name-set .set-reminder {
+            padding: 1rem;
+            font-size: 1.2rem; } }
+    .reminders__cards .reminder-content .reminder-swipe {
+      display: flex;
+      align-self: center;
+      gap: 5px;
+      align-items: flex-start; }
+      .reminders__cards .reminder-content .reminder-swipe .swipe-1,
+      .reminders__cards .reminder-content .reminder-swipe .swipe-2,
+      .reminders__cards .reminder-content .reminder-swipe .swipe-3 {
+        height: 6px;
+        width: 6px;
+        background-color: #f9e2d4;
+        border-radius: 50%;
+        transition: background-color 0.3s; }
+        .reminders__cards .reminder-content .reminder-swipe .swipe-1:hover,
+        .reminders__cards .reminder-content .reminder-swipe .swipe-2:hover,
+        .reminders__cards .reminder-content .reminder-swipe .swipe-3:hover {
+          background-color: #F0894D;
+          cursor: pointer; }
+      .reminders__cards .reminder-content .reminder-swipe .active-reminder {
+        background-color: #f29e70; }
+
+.project-edit {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  gap: 5rem;
+  padding: 2rem 3rem;
+  justify-content: space-between;
+  box-shadow: 0 0 30px rgba(217, 217, 217, 0.602); }
+  @media (max-width: 460px) {
+    .project-edit {
+      padding-left: 1rem;
+      padding-right: 1rem; } }
+  .project-edit__top {
+    display: flex;
+    gap: 2rem;
+    flex-direction: column; }
+    .project-edit__top .edit-opt-top {
+      background-color: transparent;
+      border: none;
+      color: #f4b38e;
+      align-self: flex-end;
+      transition: color 0.5s; }
+      .project-edit__top .edit-opt-top:hover {
+        color: #171716;
+        cursor: pointer; }
+    .project-edit__top .user-profile-add {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap; }
+      .project-edit__top .user-profile-add .add-project {
+        background-color: #F0894D;
+        border: none;
+        border-radius: 30px;
+        color: #fcfcfc;
+        text-transform: capitalize;
+        padding: 1.2rem 3rem;
+        transition: background-color 0.4s; }
+        .project-edit__top .user-profile-add .add-project:hover {
+          cursor: pointer;
+          background-color: #ec6a1e; }
+        @media (max-width: 535px) {
+          .project-edit__top .user-profile-add .add-project {
+            order: 2;
+            padding: 5px;
+            font-size: 1rem; } }
+      .project-edit__top .user-profile-add .user-top {
+        display: flex;
+        gap: 2rem; }
+        @media (max-width: 535px) {
+          .project-edit__top .user-profile-add .user-top {
+            flex-basis: 100%; } }
+        .project-edit__top .user-profile-add .user-top .notification {
+          font-size: 2rem;
+          position: relative;
+          align-self: center;
+          transition: color 0.4s; }
+          .project-edit__top .user-profile-add .user-top .notification:hover {
+            cursor: pointer;
+            color: #f29e70; }
+          .project-edit__top .user-profile-add .user-top .notification::before {
+            content: "";
+            background-color: #F0894D;
+            height: 5px;
+            width: 5px;
+            border-radius: 50%;
+            position: absolute;
+            right: 20%;
+            top: 10%; }
+        .project-edit__top .user-profile-add .user-top .user-profile {
+          display: flex;
+          align-items: center;
+          column-gap: 1rem; }
+          .project-edit__top .user-profile-add .user-top .user-profile .user-profile-img {
+            height: 4rem;
+            width: 4rem;
+            border-radius: 50%;
+            object-fit: cover; }
+          .project-edit__top .user-profile-add .user-top .user-profile .user-name-role .user-role {
+            color: #9D9D9D;
+            text-transform: capitalize;
+            font-size: 1.1rem; }
+          .project-edit__top .user-profile-add .user-top .user-profile .user-name-role .user-name {
+            font-size: 1.3rem;
+            text-transform: capitalize;
+            font-weight: 600;
+            color: #171716;
+            display: block; }
+        .project-edit__top .user-profile-add .user-top .user-drop-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #f6ede6;
+          border: 1px solid #f4b38e;
+          border-radius: 50%;
+          height: 1.6rem;
+          align-self: center;
+          width: 1.6rem;
+          transition: background-color 0.4s; }
+          .project-edit__top .user-profile-add .user-top .user-drop-btn:hover {
+            cursor: pointer;
+            background-color: #ee7e41; }
+            .project-edit__top .user-profile-add .user-top .user-drop-btn:hover .down-arrow {
+              color: white; }
+          .project-edit__top .user-profile-add .user-top .user-drop-btn .down-arrow {
+            color: #F0894D;
+            font-size: 1rem; }
+  .project-edit .team-info-daily {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
+    gap: 3rem;
+    max-height: 100%;
+    padding-right: 3px; }
+    @media (max-width: 1056px) {
+      .project-edit .team-info-daily {
+        gap: 4rem; } }
+    .project-edit .team-info-daily::-webkit-scrollbar {
+      width: 2px; }
+    .project-edit .team-info-daily::-webkit-scrollbar-thumb {
+      background-color: lightgray;
+      border-radius: 10px; }
+    .project-edit .team-info-daily::-webkit-scrollbar-track {
+      background-color: white; }
+    .project-edit .team-info-daily .team-members {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem; }
+      .project-edit .team-info-daily .team-members .team-members-heading {
+        font-size: 1.5rem;
+        text-transform: capitalize;
+        font-weight: 600; }
+      .project-edit .team-info-daily .team-members .team-members-imgs-add {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem; }
+        .project-edit .team-info-daily .team-members .team-members-imgs-add .team-memebers-imgs {
+          display: flex;
+          justify-content: space-between;
+          gap: 1rem; }
+          .project-edit .team-info-daily .team-members .team-members-imgs-add .team-memebers-imgs .team-imgs {
+            height: 5.5rem;
+            width: 5.5rem;
+            border-radius: 50%;
+            object-fit: cover; }
+          .project-edit .team-info-daily .team-members .team-members-imgs-add .team-memebers-imgs .team-imgs.no-img {
+            position: relative;
+            height: 5.5rem;
+            width: 5.5rem;
+            display: flex;
+            background-image: linear-gradient(to top, #fcf2e0 50%, #fcf2e0 50%); }
+          .project-edit .team-info-daily .team-members .team-members-imgs-add .team-memebers-imgs .team-imgs.no-img::before {
+            content: "JR";
+            color: #f3a06f;
+            position: absolute;
+            font-size: 2rem;
+            top: 20%;
+            height: 3rem;
+            width: 3rem;
+            left: 30%; }
+        .project-edit .team-info-daily .team-members .team-members-imgs-add .add-team-member {
+          width: 3rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px dashed #F0894D;
+          height: 3rem;
+          border-radius: 50%;
+          background-color: #f6ede6;
+          color: #F0894D;
+          font-size: 2rem;
+          transition: all 0.5s; }
+          .project-edit .team-info-daily .team-members .team-members-imgs-add .add-team-member:hover {
+            background-color: #F0894D;
+            border: 2px dashed #fcfcfc;
+            cursor: pointer;
+            color: #fcfcfc; }
+    .project-edit .team-info-daily .info {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(226, 225, 225, 0.852); }
+      .project-edit .team-info-daily .info .all-info .info-heading {
+        font-size: 1.2rem;
+        color: #757575;
+        text-transform: capitalize; }
+      .project-edit .team-info-daily .info .all-info .task-summary-data {
+        font-size: 1.5rem;
+        font-weight: 650;
+        display: block; }
+    .project-edit .team-info-daily .daily-tasks {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem; }
+      .project-edit .team-info-daily .daily-tasks .daily-task-top {
+        display: flex;
+        justify-content: space-between; }
+        .project-edit .team-info-daily .daily-tasks .daily-task-top .daily-task-heading {
+          font-size: 1.5rem;
+          font-weight: 600;
+          text-transform: capitalize; }
+        .project-edit .team-info-daily .daily-tasks .daily-task-top .edit-btn {
+          background-color: transparent;
+          border: none;
+          color: #F0894D;
+          font-size: 1.5rem;
+          font-weight: 500;
+          text-transform: capitalize; }
+          .project-edit .team-info-daily .daily-tasks .daily-task-top .edit-btn:hover {
+            text-decoration: underline;
+            cursor: pointer; }
+      .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 100%;
+        grid-auto-rows: 45%;
+        overflow-y: auto;
+        column-gap: 2rem;
+        padding-bottom: 0rem;
+        row-gap: 2rem; }
+        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards::-webkit-scrollbar {
+          width: 5px; }
+        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards::-webkit-scrollbar-thumb {
+          background-color: #f9e2d4;
+          border-radius: 10px; }
+        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards::-webkit-scrollbar-track {
+          background-color: white; }
+        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .add-new.cream-card {
+          background-color: #f6f1eb; }
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .add-new.cream-card .card-name {
+            grid-row: 2/3; }
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .add-new.cream-card .add-btn {
+            grid-row: 3/-1;
+            justify-self: end;
+            width: max-content; }
+        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .new-task.white-card {
+          background-color: white; }
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .new-task.white-card .task-card-edit {
+            align-self: start; }
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .new-task.white-card .card-name {
+            width: 85%; }
+        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .in-progress-task.white-card {
+          background-color: white;
+          position: relative;
+          background-color: white; }
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .in-progress-task.white-card .task-card-edit {
+            align-self: start; }
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .in-progress-task.white-card .progress-pattern {
+            position: absolute;
+            bottom: 15%;
+            height: 6rem;
+            right: 0%;
+            width: 15rem;
+            transform: rotate(-35deg) translateY(-20%); }
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .in-progress-task.white-card .card-name {
+            width: 85%;
+            z-index: 100; }
+        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .done-task.orange-card {
+          background-color: white;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          color: white;
+          background-color: #F0894D; }
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .done-task.orange-card .card-name {
+            width: 85%; }
+        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards {
+          border-radius: 15px;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: 3rem 1fr 1fr;
+          height: 100%;
+          padding: 2rem;
+          padding-left: 2.5rem;
+          box-shadow: 0 0 20px rgba(219, 217, 217, 0.785); }
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .card-name {
+            font-weight: 450;
+            font-size: 1.4rem;
+            text-transform: capitalize; }
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .add-btn {
+            color: #171716;
+            font-size: 3rem;
+            background-color: transparent;
+            border: none;
+            font-weight: 500;
+            align-self: end;
+            transition: background-color 0.5s;
+            padding: 2px 5px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center; }
+            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .add-btn:hover {
+              cursor: pointer;
+              background-color: #fcfcfc; }
+            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .add-btn .add-icon {
+              font-size: 2.5rem; }
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1rem; }
+            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-state-name {
+              text-transform: capitalize;
+              font-size: 1.2rem;
+              font-weight: 500;
+              display: flex;
+              align-items: start;
+              position: relative; }
+              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-state-name::before {
+                content: "";
+                position: absolute;
+                left: -20%;
+                height: 7px;
+                width: 7px;
+                border-radius: 50%;
+                align-self: center; }
+            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-state-name.green-state::before {
+              left: -20%;
+              background-color: #00cbb3; }
+            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-state-name.white-state {
+              color: white; }
+              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-state-name.white-state::before {
+                left: -50%;
+                background-color: white; }
+            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-state-name.orange-state::before {
+              left: -50%;
+              background-color: #ff6161; }
+            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-new-checkbox,
+            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-progress-checkbox,
+            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox {
+              display: none; }
+              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-new-checkbox:checked + .task-label,
+              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-progress-checkbox:checked + .task-label,
+              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox:checked + .task-label {
+                background-color: #f29e70; }
+                .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-new-checkbox:checked + .task-label::after,
+                .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-progress-checkbox:checked + .task-label::after,
+                .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox:checked + .task-label::after {
+                  color: #fcfcfc;
+                  opacity: 1; }
+            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox + .task-label {
+              border: 1px solid #171716; }
+              @media (max-width: 460px) {
+                .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox + .task-label {
+                  border-radius: 1px; } }
+            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox:checked + .task-label {
+              background-color: #131313; }
+              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox:checked + .task-label::after {
+                color: #fcfcfc;
+                opacity: 1; }
+            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-label {
+              height: 1.2rem;
+              position: relative;
+              width: 1.2rem;
+              border-radius: 2px;
+              display: block;
+              align-self: center;
+              border: 1px solid #f29e70; }
+              @media (max-width: 460px) {
+                .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-label {
+                  border-radius: 2px; } }
+              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-label:hover {
+                cursor: pointer; }
+              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-label::after {
+                content: "\2713";
+                position: absolute;
+                top: -25%;
+                right: 20%;
+                opacity: 0; }

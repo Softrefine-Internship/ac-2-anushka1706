@@ -3,7 +3,360 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Team Management Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body></body>
+  <body>
+    <section class="navigation">
+      <div class="side-navigation">
+        <div class="logo-div">
+          <img src="img/logo.jpg" alt="logo" class="side-nav-logo-img" />
+        </div>
+        <ul class="side-nav">
+          <li class="nav-li active-li">
+            <a href="#">
+              <ion-icon class="side-nav-icon" name="home-outline"></ion-icon
+            ></a>
+          </li>
+          <li class="nav-li">
+            <a href="#">
+              <ion-icon class="side-nav-icon" name="people-outline"></ion-icon>
+            </a>
+          </li>
+          <li class="nav-li">
+            <a href="#">
+              <ion-icon
+                class="side-nav-icon"
+                name="calendar-outline"
+              ></ion-icon>
+            </a>
+          </li>
+          <li class="nav-li">
+            <a href="#">
+              <ion-icon
+                class="side-nav-icon"
+                name="checkbox-outline"
+              ></ion-icon>
+            </a>
+          </li>
+          <li class="nav-li">
+            <a href="#">
+              <ion-icon class="side-nav-icon" name="time-outline"></ion-icon>
+            </a>
+          </li>
+          <li class="nav-li">
+            <a href="#">
+              <ion-icon
+                class="side-nav-icon"
+                name="chatbubble-outline"
+              ></ion-icon>
+            </a>
+          </li>
+        </ul>
+        <a href="#" class="side-nav-help">?</a>
+      </div>
+      <nav class="sub-menu-nav">
+        <div class="sub-menu-heading">
+          <span class="logo-name">ziferblat</span>
+          <span class="heading-secondary">teamwork & time management</span>
+        </div>
+        <ul class="sub-menu">
+          <li class="sub-menu-links">
+            <div class="closed-menu-li">
+              <span class="link-name">team</span>
+              <ion-icon
+                class="right-icon"
+                name="chevron-forward-outline"
+              ></ion-icon>
+            </div>
+          </li>
+          <li class="sub-menu-links active-open-li">
+            <div class="closed-menu-li">
+              <span class="link-name">projects</span>
+              <ion-icon
+                class="right-icon"
+                name="chevron-forward-outline"
+              ></ion-icon>
+            </div>
+            <div class="open-menu-li">
+              <ul class="open-menu-links">
+                <li class="open-link-names">all projects</li>
+                <li class="open-link-names">design system</li>
+                <li class="open-link-names">
+                  make unique designs for customer
+                </li>
+                <li class="open-link-names">user flow</li>
+                <li class="open-link-names">UX research</li>
+                <li class="open-link-names">add new project</li>
+              </ul>
+            </div>
+          </li>
+          <li class="sub-menu-links active-open-li">
+            <div class="closed-menu-li">
+              <span class="link-name">tasks</span>
+              <ion-icon
+                class="right-icon"
+                name="chevron-forward-outline"
+              ></ion-icon>
+            </div>
+            <div class="open-menu-li">
+              <ul class="open-menu-links">
+                <li class="open-link-names">all tasks(3)</li>
+                <li class="open-link-names">new</li>
+                <li class="open-link-names">in progress(1)</li>
+                <li class="open-link-names">done(2)</li>
+                <li class="open-link-names">add new task</li>
+              </ul>
+            </div>
+          </li>
+          <li class="sub-menu-links">
+            <div class="closed-menu-li">
+              <span class="link-name">reminder</span>
+              <ion-icon
+                class="right-icon"
+                name="chevron-forward-outline"
+              ></ion-icon>
+            </div>
+          </li>
+          <li class="sub-menu-links">
+            <div class="closed-menu-li">
+              <span class="link-name">messengers</span>
+              <ion-icon
+                class="right-icon"
+                name="chevron-forward-outline"
+              ></ion-icon>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </section>
+    <main>
+      <div class="project-summary">
+        <div class="header">
+          <span class="date">today, 4 october</span>
+          <div class="search">
+            <ion-icon class="search-icon" name="search-outline"></ion-icon>
+            <input
+              type="text"
+              placeholder="Searching for..."
+              class="search-bar"
+              id="search-bar"
+            />
+          </div>
+        </div>
+        <div class="recent-reminder">
+          <section class="recent-projects">
+            <div class="recent-projects__header">
+              <span class="recent-heading">recent project</span>
+              <a class="recent-view-all" href="#">view all</a>
+            </div>
+            <div class="recent-projects__all-cards">
+              <div class="recent-projects-cards peach">
+                <div class="card-top">
+                  <div class="img-opts">
+                    <div class="client-card-imgs">
+                      <div class="client-img"></div>
+                      <img
+                        src="img/client-4.jpg"
+                        alt=""
+                        class="client-img"
+                      /><img src="img/client-3.jpg" alt="" class="client-img" />
+                    </div>
+                    <button class="card-opts">
+                      <span> &#9679;</span><span> &#9679;</span>
+                    </button>
+                  </div>
+                  <div class="project-name-deadline">
+                    <span class="project-name">design system</span>
+                    <span class="deadline">deadline: 18 october</span>
+                  </div>
+                </div>
+                <div class="project-progress">
+                  <label for="progress-bar" class="progress-label"
+                    >84 hours / 40%</label
+                  >
+                  <progress class="progress" max="100" value="40"></progress>
+                </div>
+              </div>
+              <div class="recent-projects-cards cream">
+                <div class="card-top">
+                  <div class="img-opts">
+                    <div class="client-card-imgs">
+                      <div class="client-img"></div>
+                      <img
+                        src="img/client-6.jpg"
+                        alt=""
+                        class="client-img"
+                      /><img src="img/client-3.jpg" alt="" class="client-img" />
+                    </div>
+                    <button class="card-opts">
+                      <span> &#9679;</span><span> &#9679;</span>
+                    </button>
+                  </div>
+                  <div class="project-name-deadline">
+                    <span class="project-name"
+                      >make unique page for customer</span
+                    >
+                    <span class="deadline">deadline: 30 october</span>
+                  </div>
+                </div>
+                <div class="project-progress">
+                  <label for="progress-bar" class="progress-label"
+                    >108 hours / 75%</label
+                  >
+                  <progress class="progress" max="100" value="75"></progress>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="reminders">
+            <span class="reminders__heading">reminders</span>
+            <div class="reminders__cards">
+              <div class="reminder-content">
+                <span class="reminder-time">tomorrow, 16:00-18:00</span>
+                <div class="reminder-name-set">
+                  <span class="reminder-name"
+                    >discussion of the interm results of the project</span
+                  >
+                  <button class="set-reminder">set reminder</button>
+                </div>
+                <div class="reminder-swipe">
+                  <div class="swipe-1 active-reminder"></div>
+                  <div class="swipe-2"></div>
+                  <div class="swipe-3"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="project-edit">
+        <section class="project-edit__top">
+          <button class="edit-opt-top">&#9679; &#9679; &#9679;</button>
+          <div class="user-profile-add">
+            <button class="add-project">add project</button>
+            <div class="user-top">
+              <ion-icon
+                class="notification"
+                name="notifications-outline"
+              ></ion-icon>
+              <div class="user-profile">
+                <img class="user-profile-img" src="img/client-3.jpg" alt="" />
+                <div class="user-name-role">
+                  <span class="user-role">user</span>
+                  <span class="user-name">maria</span>
+                </div>
+              </div>
+              <button class="user-drop-btn">
+                <ion-icon
+                  class="down-arrow"
+                  name="chevron-down-outline"
+                ></ion-icon>
+              </button>
+            </div>
+          </div>
+        </section>
+        <div class="team-info-daily">
+          <section class="team-members">
+            <span class="team-members-heading">team members</span>
+            <div class="team-members-imgs-add">
+              <div class="team-memebers-imgs">
+                <img src="img/client-5.jpg" alt="" class="team-imgs" /><img
+                  src="img/client-1.jpg"
+                  alt=""
+                  class="team-imgs"
+                />
+                <div class="team-imgs no-img"></div>
+                <img src="img/client-7.jpg" alt="" class="team-imgs" />
+                <img src="img/client-5.jpg" alt="" class="team-imgs" />
+              </div>
+              <button class="add-team-member">&#43;</button>
+            </div>
+          </section>
+          <section class="info">
+            <div class="all-info project-time">
+              <span class="info-heading">project time</span>
+              <span class="task-summary-data">18 hours</span>
+            </div>
+            <div class="all-info in-progress">
+              <span class="info-heading">task in progress</span>
+              <span class="task-summary-data">2</span>
+            </div>
+            <div class="all-info finished">
+              <span class="info-heading">finished tasks</span>
+              <span class="task-summary-data">16</span>
+            </div>
+          </section>
+          <section class="daily-tasks">
+            <div class="daily-task-top">
+              <span class="daily-task-heading">daily tasks (3)</span>
+              <button class="edit-btn">edit</button>
+            </div> 
+            <div class="daily-tasks-all-cards">
+              <div class="daily-cards add-new cream-card">
+                <span class="card-name">add new</span>
+                <button class="add-btn"><ion-icon class="add-icon" name="add-outline"></ion-icon></button>
+              </div>
+              <div class="daily-cards new-task white-card">
+                <div class="task-card-edit">
+                  <span class="task-state-name orange-state">new</span>
+                  <input
+                    type="checkbox"
+                    class="task-new-checkbox"
+                    id="task-new-checkbox"
+                  />
+                  <label for="task-new-checkbox" class="task-label"></label>
+                </div>
+                <span class="card-name"
+                  >change color palette to more bright</span
+                >
+              </div>
+              <div class="daily-cards in-progress-task white-card">
+                <img src="img/llline.svg" class="progress-pattern" alt="" />
+                <div class="task-card-edit">
+                  <span class="task-state-name green-state">in progress</span>
+                  <input
+                    type="checkbox"
+                    class="task-progress-checkbox"
+                    id="task-progress-checkbox"
+                  />
+                  <label
+                    for="task-progress-checkbox"
+                    class="task-label"
+                  ></label>
+                </div>
+                <span class="card-name">make prototype for mobile version</span>
+              </div>
+              <div class="daily-cards done-task orange-card">
+                <div class="task-card-edit">
+                  <span class="task-state-name white-state">done</span>
+                  <input
+                    type="checkbox"
+                    class="task-done-checkbox"
+                    id="task-done-checkbox"
+                  />
+                  <label for="task-done-checkbox" class="task-label"></label>
+                </div>
+                <span class="card-name">make fixes in homepage</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>

@@ -1,0 +1,53 @@
+@mixin response($device) {
+  @if $device == phone {
+    @media (max-width: 770px) {
+      @content;
+    }
+  }
+  @if $device == large {
+    @media (min-width: 1450px) {
+      @content;
+    }
+  } @else if $device == s-phone {
+    @media (max-width: 610px) {
+      @content;
+    }
+  } @else if $device == s-2-phone {
+    @media (max-width: 535px) {
+      @content;
+    }
+  } @else if $device == s-3-phone {
+    @media (max-width: 460px) {
+      @content;
+    }
+  } @else if $device == s-5-phone {
+    @media (max-width: 370px) {
+      @content;
+    }
+  } @else if $device == tab-port {
+    @media (max-width: 1185px) {
+      @content;
+    }
+  } @else if $device == s-tab-port {
+    @media (max-width: 1056px) {
+      @content;
+    }
+  } @else if $device == s-tab-3-port {
+    @media (max-width: 860px) {
+      @content;
+    }
+  } @else if $device == s-2-tab-port {
+    @media (max-width:985px) {
+      @content;
+    }
+  } @else if $device == laptop {
+    @media (max-width: 1300px) {   
+      @content;
+    }
+  } 
+  @else if $device == s-laptop {
+    @media (max-width: 1230px) {   
+      @content;
+    }
+  } 
+}
