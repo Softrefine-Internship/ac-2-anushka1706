@@ -119,7 +119,7 @@
       @include response(laptop) {
         max-height: 100%;
         grid-template-columns: 1fr;
-        grid-auto-rows:50%;
+        grid-auto-rows:max-content;
       }
       .recent-projects-cards {
         padding: 3rem;
