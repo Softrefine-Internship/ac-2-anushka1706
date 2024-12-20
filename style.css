@@ -283,10 +283,8 @@ main {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    flex-basis: auto;
     flex-grow: 0;
-    height: 83%;
-    flex-shrink: 0; }
+    flex-basis: 80%; }
     .project-summary .recent-projects__header {
       display: flex;
       justify-content: space-between; }
