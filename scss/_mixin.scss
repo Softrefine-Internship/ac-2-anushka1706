@@ -50,4 +50,9 @@
       @content;
     }
   } 
+  @else if $device == s-2-laptop {
+    @media (max-width: 1280px) {   
+      @content;
+    }
+  } 
 }

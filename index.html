@@ -16,7 +16,10 @@
     <section class="navigation">
       <div class="side-navigation">
         <div class="logo-div">
-          <img src="img/logo.jpg" alt="logo" class="side-nav-logo-img" />
+          <input type="checkbox" id="logo-check" class="logo-checkbox" unchecked/>
+          <label for="logo-check" class="logo-label"
+            ><img src="img/logo.jpg" alt="logo" class="side-nav-logo-img"
+          /></label>
         </div>
         <ul class="side-nav">
           <li class="nav-li active-li">
@@ -138,6 +141,31 @@
     </section>
     <main>
       <div class="project-summary">
+        <section class="project-edit__top">
+          <button class="edit-opt-top">&#9679; &#9679; &#9679;</button>
+          <div class="user-profile-add">
+            <button class="add-project">add project</button>
+            <div class="user-top">
+              <ion-icon
+                class="notification"
+                name="notifications-outline"
+              ></ion-icon>
+              <div class="user-profile">
+                <img class="user-profile-img" src="img/client-3.jpg" alt="" />
+                <div class="user-name-role">
+                  <span class="user-role">user</span>
+                  <span class="user-name">maria</span>
+                </div>
+              </div>
+              <button class="user-drop-btn">
+                <ion-icon
+                  class="down-arrow"
+                  name="chevron-down-outline"
+                ></ion-icon>
+              </button>
+            </div>
+          </div>
+        </section>
         <div class="header">
           <span class="date">today, 4 october</span>
           <div class="search">
@@ -297,11 +325,13 @@
             <div class="daily-task-top">
               <span class="daily-task-heading">daily tasks (3)</span>
               <button class="edit-btn">edit</button>
-            </div> 
+            </div>
             <div class="daily-tasks-all-cards">
               <div class="daily-cards add-new cream-card">
                 <span class="card-name">add new</span>
-                <button class="add-btn"><ion-icon class="add-icon" name="add-outline"></ion-icon></button>
+                <button class="add-btn">
+                  <ion-icon class="add-icon" name="add-outline"></ion-icon>
+                </button>
               </div>
               <div class="daily-cards new-task white-card">
                 <div class="task-card-edit">
@@ -318,7 +348,33 @@
                 >
               </div>
               <div class="daily-cards in-progress-task white-card">
-                <!-- <img src="img/llline.svg" class="progress-pattern" alt="" /> -->
+                <div class="task-card-edit">
+                  <span class="task-state-name green-state">in progress</span>
+                  <input
+                    type="checkbox"
+                    class="task-progress-checkbox"
+                    id="task-progress-checkbox"
+                  />
+                  <label
+                    for="task-progress-checkbox"
+                    class="task-label"
+                  ></label>
+                </div>
+                <span class="card-name">make prototype for mobile version</span>
+              </div>
+              <div class="daily-cards done-task orange-card">
+                <div class="task-card-edit">
+                  <span class="task-state-name white-state">done</span>
+                  <input
+                    type="checkbox"
+                    class="task-done-checkbox"
+                    id="task-done-checkbox"
+                  />
+                  <label for="task-done-checkbox" class="task-label"></label>
+                </div>
+                <span class="card-name">make fixes in homepage</span>
+              </div>
+              <div class="daily-cards in-progress-task white-card">
                 <div class="task-card-edit">
                   <span class="task-state-name green-state">in progress</span>
                   <input

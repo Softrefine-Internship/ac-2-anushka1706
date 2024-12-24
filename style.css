@@ -21,6 +21,9 @@ body {
   @media (max-width: 370px) {
     body {
       grid-template-columns: max-content 1fr; } }
+  @media (max-width: 770px) {
+    body {
+      grid-template-rows: auto 1fr; } }
 
 main {
   grid-column: 2/-1;
@@ -29,7 +32,8 @@ main {
   grid-template-rows: 100%;
   max-height: 100%;
   overflow-y: auto;
-  max-width: 100%; }
+  max-width: 100%;
+  transition: all 0.5s; }
   @media (max-width: 1185px) {
     main {
       grid-template-columns: minmax(0, 1fr); } }
@@ -42,6 +46,10 @@ main {
   @media (max-width: 770px) {
     .navigation .side-navigation:has(.nav-li.active-li:not(:hover)) .side-nav .nav-li.active-li .side-nav-icon {
       color: #5a5a5a; } }
+  .navigation .side-navigation:has(.logo-div > .logo-checkbox:checked) .side-nav,
+  .navigation .side-navigation:has(.logo-div > .logo-checkbox:checked) .side-nav-help,
+  .navigation .side-navigation:has(.logo-div > .logo-checkbox:checked) .sub-menu-nav {
+    display: none; }
   @media (max-width: 770px) {
     .navigation .side-navigation:has(.nav-li.active-li:hover) ~ .sub-menu-nav {
       display: block;
@@ -64,20 +72,27 @@ main {
     padding-bottom: 1rem; }
     .navigation .side-navigation .logo-div {
       border-bottom: 1px solid #e2e1e1;
-      padding-bottom: 1.6rem;
+      padding-bottom: 1.2rem;
       align-self: stretch;
       display: flex;
       justify-content: center; }
+      .navigation .side-navigation .logo-div .logo-checkbox {
+        display: none; }
+      .navigation .side-navigation .logo-div .logo-label {
+        pointer-events: none; }
+        @media (max-width: 770px) {
+          .navigation .side-navigation .logo-div .logo-label {
+            pointer-events: auto; } }
+        .navigation .side-navigation .logo-div .logo-label .side-nav-logo-img {
+          height: 3.8rem;
+          width: 3.8rem;
+          transform: rotate(90deg); }
       @media (max-width: 1056px) {
         .navigation .side-navigation .logo-div {
           padding-bottom: 1.7rem; } }
       @media (max-width: 770px) {
         .navigation .side-navigation .logo-div {
-          padding-bottom: 1.5rem; } }
-      .navigation .side-navigation .logo-div .side-nav-logo-img {
-        height: 3.8rem;
-        width: 3.8rem;
-        transform: rotate(90deg); }
+          padding-bottom: 1rem; } }
     .navigation .side-navigation .side-nav {
       font-size: 2rem;
       display: flex;
@@ -121,8 +136,7 @@ main {
       padding: 3px 1rem;
       transition: all 0.4s; }
       .navigation .side-navigation .side-nav-help:hover {
-        background-color: #fcfcfc;
-        color: black; }
+        box-shadow: 0 0 10px #686767; }
   .navigation .sub-menu-nav {
     width: 250px;
     display: flex;
@@ -215,6 +229,29 @@ main {
               font-weight: 600;
               color: #171716; }
 
+.navigation:has(.logo-div > .logo-checkbox:checked) + .logo-label {
+  height: 5rem;
+  grid-row: 1/-1;
+  position: relative;
+  z-index: 10000; }
+
+.navigation:has(.logo-div > .logo-checkbox:checked) .logo-div {
+  margin-left: 2rem;
+  background-color: none; }
+
+.navigation:has(.logo-div > .logo-checkbox:unchecked) {
+  grid-column: 2/-1; }
+
+.navigation:has(.logo-div > .logo-checkbox:checked) ~ main {
+  grid-column: 1/-1; }
+
+@media (max-width: 770px) {
+  .navigation:has(.logo-div > .logo-checkbox:unchecked) ~ main .project-summary {
+    padding-top: 2rem; } }
+
+.navigation:has(.logo-div > .logo-checkbox:checked) ~ main .project-summary {
+  padding-top: 0rem; }
+
 .project-summary {
   display: flex;
   flex-direction: column;
@@ -222,20 +259,37 @@ main {
   padding: 2rem 3rem;
   padding-bottom: 2rem;
   max-height: 100%; }
-  @media (max-width: 460px) {
-    .project-summary {
-      padding-left: 1rem;
-      padding-right: 1rem; } }
+  .project-summary .project-edit__top {
+    display: none;
+    padding-top: 0rem; }
+    @media (max-width: 1185px) {
+      .project-summary .project-edit__top {
+        display: flex;
+        padding-left: 0rem;
+        padding-right: 0rem;
+        justify-content: space-between; } }
+    .project-summary .project-edit__top .user-profile-add {
+      flex-wrap: nowrap;
+      justify-content: space-between; }
+      .project-summary .project-edit__top .user-profile-add .user-top {
+        flex-basis: 30%;
+        justify-content: end; }
+      .project-summary .project-edit__top .user-profile-add .add-project {
+        border-radius: 15px;
+        padding: 8px;
+        align-self: center; }
   .project-summary .header {
     display: flex;
     flex-direction: column;
-    gap: 1rem; }
+    gap: 1rem;
+    flex-basis: auto; }
     .project-summary .header .date {
       font-size: 1.7rem;
       font-weight: 600;
       text-transform: capitalize; }
     .project-summary .header .search {
-      position: relative; }
+      position: relative;
+      z-index: -1; }
       .project-summary .header .search .search-bar {
         width: 100%;
         border: 1px solid #f1ede8;
@@ -283,8 +337,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    flex-grow: 0;
-    flex-basis: 80%; }
+    height: max-content; }
     .project-summary .recent-projects__header {
       display: flex;
       justify-content: space-between; }
@@ -306,10 +359,16 @@ main {
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
       justify-content: space-between;
-      height: 100%;
       flex-grow: 1;
       padding-right: 5px;
       overflow-y: auto; }
+      .project-summary .recent-projects__all-cards::-webkit-scrollbar {
+        width: 2px; }
+      .project-summary .recent-projects__all-cards::-webkit-scrollbar-thumb {
+        background-color: lightgray;
+        border-radius: 10px; }
+      .project-summary .recent-projects__all-cards::-webkit-scrollbar-track {
+        background-color: white; }
       @media (max-width: 1300px) {
         .project-summary .recent-projects__all-cards {
           height: 100%;
@@ -515,18 +574,24 @@ main {
   flex-direction: column;
   max-height: 100%;
   gap: 5rem;
-  padding: 2rem 3rem;
   align-items: stretch;
   justify-content: space-between;
   box-shadow: 0 0 30px rgba(217, 217, 217, 0.602); }
-  @media (max-width: 460px) {
+  @media (max-width: 1185px) {
     .project-edit {
-      padding-left: 1rem;
-      padding-right: 1rem; } }
+      box-shadow: none; } }
+  @media (max-width: 770px) {
+    .project-edit {
+      box-shadow: none; } }
   .project-edit__top {
     display: flex;
+    padding: 2rem 3rem;
     gap: 2rem;
+    padding-bottom: 0rem;
     flex-direction: column; }
+    @media (max-width: 1185px) {
+      .project-edit__top {
+        display: none; } }
     .project-edit__top .edit-opt-top {
       background-color: transparent;
       border: none;
@@ -638,7 +703,8 @@ main {
     .project-edit .team-info-daily .team-members {
       display: flex;
       flex-direction: column;
-      gap: 1rem; }
+      gap: 1rem;
+      padding: 0rem 3rem; }
       .project-edit .team-info-daily .team-members .team-members-heading {
         font-size: 1.5rem;
         text-transform: capitalize;
@@ -694,9 +760,11 @@ main {
     .project-edit .team-info-daily .info {
       display: flex;
       justify-content: space-between;
-      padding: 2rem;
       border-radius: 15px;
-      box-shadow: 0 0 20px rgba(226, 225, 225, 0.852); }
+      box-shadow: 0 0 20px rgba(226, 225, 225, 0.584);
+      padding: 2rem;
+      margin-left: 3rem;
+      margin-right: 3rem; }
       .project-edit .team-info-daily .info .all-info .info-heading {
         font-size: 1.2rem;
         color: #757575;
@@ -708,16 +776,19 @@ main {
     .project-edit .team-info-daily .daily-tasks {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
       height: 100%;
       overflow: hidden; }
       .project-edit .team-info-daily .daily-tasks .daily-task-top {
         display: flex;
+        padding: 2rem 3rem;
+        padding-top: 0rem;
+        padding-bottom: 0rem;
         justify-content: space-between;
         flex-basis: auto; }
         .project-edit .team-info-daily .daily-tasks .daily-task-top .daily-task-heading {
           font-size: 1.5rem;
           font-weight: 600;
+          padding-bottom: 5px;
           text-transform: capitalize; }
         .project-edit .team-info-daily .daily-tasks .daily-task-top .edit-btn {
           background-color: transparent;
@@ -732,18 +803,48 @@ main {
       .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-auto-rows: minmax(max-content, 100%);
+        grid-auto-rows: 20rem;
+        padding: 2rem 3rem;
         overflow-y: scroll;
         flex-basis: 100%;
         column-gap: 2rem;
-        padding-bottom: 0rem;
+        padding-bottom: 1rem;
         row-gap: 2rem; }
         @media (max-width: 1230px) {
           .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
             grid-template-columns: 1fr; } }
+        @media (max-width: 1300px) {
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+            grid-template-columns: 1fr;
+            grid-auto-rows: 40%; } }
         @media (max-width: 1185px) {
           .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-auto-rows: 75%; } }
+        @media (max-width: 985px) {
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-auto-rows: 60%; } }
+        @media (max-width: 860px) {
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+            grid-template-columns: 1fr 1fr;
             grid-auto-rows: 50%; } }
+        @media (max-width: 770px) {
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-auto-rows: 85%; } }
+        @media (max-width: 610px) {
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-auto-rows: 65%; } }
+        @media (max-width: 535px) {
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+            grid-template-columns: 1fr 1fr;
+            grid-auto-rows: 55%; } }
+        @media (max-width: 370px) {
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+            grid-template-columns: 1fr 1fr;
+            grid-auto-rows: 35%; } }
         .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards::-webkit-scrollbar {
           width: 5px; }
         .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards::-webkit-scrollbar-thumb {
@@ -751,153 +852,154 @@ main {
           border-radius: 10px; }
         .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards::-webkit-scrollbar-track {
           background-color: white; }
-        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .add-new.cream-card {
-          background-color: #f6f1eb; }
-          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .add-new.cream-card .card-name {
-            grid-row: 2/3; }
-          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .add-new.cream-card .add-btn {
-            grid-row: 3/-1;
-            justify-self: end;
-            width: max-content; }
-        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .new-task.white-card {
-          background-color: white; }
-          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .new-task.white-card .task-card-edit {
-            align-self: start; }
-          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .new-task.white-card .card-name {
-            width: 85%; }
-            @media (max-width: 1230px) {
-              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .new-task.white-card .card-name {
-                grid-row: 2/-1;
-                align-self: center; } }
-        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .in-progress-task.white-card {
-          background-color: white;
-          position: relative;
-          background-color: white; }
-          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .in-progress-task.white-card .task-card-edit {
-            align-self: start; }
-          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .in-progress-task.white-card .progress-pattern {
-            position: absolute;
-            bottom: 15%;
-            height: 6rem;
-            right: 0%;
-            width: 15rem;
-            transform: rotate(-35deg) translateY(-20%); }
-          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .in-progress-task.white-card .card-name {
-            width: 85%;
-            z-index: 100; }
-            @media (max-width: 1230px) {
-              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .in-progress-task.white-card .card-name {
-                grid-row: 2/-1;
-                align-self: center; } }
-        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .done-task.orange-card {
-          background-color: white;
-          color: white;
-          background-color: #F0894D; }
-          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .done-task.orange-card .card-name {
-            width: 85%; }
-            @media (max-width: 1230px) {
-              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .done-task.orange-card .card-name {
-                grid-row: 2/-1;
-                align-self: center; } }
-        .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards {
-          border-radius: 15px;
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-template-rows: 3rem 1fr 1fr;
-          padding: 2rem;
-          padding-left: 2.5rem;
-          box-shadow: 0 0 20px rgba(219, 217, 217, 0.785); }
-          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .card-name {
-            font-weight: 450;
-            font-size: 1.4rem;
-            text-transform: capitalize; }
-          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .add-btn {
-            color: #171716;
-            font-size: 3rem;
-            background-color: transparent;
-            border: none;
+      .project-edit .team-info-daily .daily-tasks .add-new.cream-card {
+        background-color: #f6f1eb; }
+        .project-edit .team-info-daily .daily-tasks .add-new.cream-card .card-name {
+          grid-row: 2/3; }
+        .project-edit .team-info-daily .daily-tasks .add-new.cream-card .add-btn {
+          grid-row: 3/-1;
+          justify-self: end;
+          width: max-content; }
+      .project-edit .team-info-daily .daily-tasks .new-task.white-card {
+        background-color: white; }
+        .project-edit .team-info-daily .daily-tasks .new-task.white-card .task-card-edit {
+          align-self: start; }
+        .project-edit .team-info-daily .daily-tasks .new-task.white-card .card-name {
+          width: 85%; }
+          @media (max-width: 1230px) {
+            .project-edit .team-info-daily .daily-tasks .new-task.white-card .card-name {
+              grid-row: 2/-1;
+              align-self: center; } }
+      .project-edit .team-info-daily .daily-tasks .in-progress-task.white-card {
+        background-color: white;
+        position: relative;
+        background-color: white; }
+        .project-edit .team-info-daily .daily-tasks .in-progress-task.white-card .task-card-edit {
+          align-self: start; }
+        .project-edit .team-info-daily .daily-tasks .in-progress-task.white-card .progress-pattern {
+          position: absolute;
+          bottom: 15%;
+          height: 6rem;
+          right: 0%;
+          width: 15rem;
+          transform: rotate(-35deg) translateY(-20%); }
+        .project-edit .team-info-daily .daily-tasks .in-progress-task.white-card .card-name {
+          width: 85%;
+          z-index: 100; }
+          @media (max-width: 1230px) {
+            .project-edit .team-info-daily .daily-tasks .in-progress-task.white-card .card-name {
+              grid-row: 2/-1;
+              align-self: center; } }
+      .project-edit .team-info-daily .daily-tasks .done-task.orange-card {
+        background-color: white;
+        box-shadow: 0 0 25px rgba(219, 217, 217, 0.785);
+        color: white;
+        background-color: #F0894D; }
+        .project-edit .team-info-daily .daily-tasks .done-task.orange-card .card-name {
+          width: 85%; }
+          @media (max-width: 1230px) {
+            .project-edit .team-info-daily .daily-tasks .done-task.orange-card .card-name {
+              grid-row: 2/-1;
+              align-self: center; } }
+      .project-edit .team-info-daily .daily-tasks .daily-cards {
+        border-radius: 15px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 3rem 1fr 1fr;
+        padding: 2rem;
+        padding-left: 2.5rem;
+        box-shadow: 0 0 20px rgba(219, 217, 217, 0.785); }
+        .project-edit .team-info-daily .daily-tasks .daily-cards .card-name {
+          font-weight: 450;
+          font-size: 1.4rem;
+          text-transform: capitalize; }
+        .project-edit .team-info-daily .daily-tasks .daily-cards .add-btn {
+          color: #171716;
+          font-size: 3rem;
+          background-color: transparent;
+          border: none;
+          font-weight: 500;
+          align-self: end;
+          transition: background-color 0.5s;
+          padding: 2px 5px;
+          border-radius: 8px;
+          display: flex;
+          align-items: center; }
+          .project-edit .team-info-daily .daily-tasks .daily-cards .add-btn:hover {
+            cursor: pointer;
+            background-color: #fcfcfc; }
+          .project-edit .team-info-daily .daily-tasks .daily-cards .add-btn .add-icon {
+            font-size: 2.5rem; }
+        .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          gap: 1rem; }
+          .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-state-name {
+            text-transform: capitalize;
+            font-size: 1.2rem;
             font-weight: 500;
-            align-self: end;
-            transition: background-color 0.5s;
-            padding: 2px 5px;
-            border-radius: 8px;
             display: flex;
-            align-items: center; }
-            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .add-btn:hover {
-              cursor: pointer;
-              background-color: #fcfcfc; }
-            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .add-btn .add-icon {
-              font-size: 2.5rem; }
-          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 1rem; }
-            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-state-name {
-              text-transform: capitalize;
-              font-size: 1.2rem;
-              font-weight: 500;
-              display: flex;
-              align-items: start;
-              position: relative; }
-              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-state-name::before {
-                content: "";
-                position: absolute;
-                left: -20%;
-                height: 7px;
-                width: 7px;
-                border-radius: 50%;
-                align-self: center; }
-            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-state-name.green-state::before {
+            align-items: start;
+            position: relative; }
+            .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-state-name::before {
+              content: "";
+              position: absolute;
               left: -20%;
-              background-color: #00cbb3; }
-            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-state-name.white-state {
-              color: white; }
-              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-state-name.white-state::before {
-                left: -50%;
-                background-color: white; }
-            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-state-name.orange-state::before {
+              height: 7px;
+              width: 7px;
+              border-radius: 50%;
+              align-self: center; }
+          .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-state-name.green-state::before {
+            left: -20%;
+            background-color: #00cbb3; }
+          .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-state-name.white-state {
+            color: white; }
+            .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-state-name.white-state::before {
               left: -50%;
-              background-color: #ff6161; }
-            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-new-checkbox,
-            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-progress-checkbox,
-            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox {
-              display: none; }
-              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-new-checkbox:checked + .task-label,
-              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-progress-checkbox:checked + .task-label,
-              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox:checked + .task-label {
-                background-color: #f29e70; }
-                .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-new-checkbox:checked + .task-label::after,
-                .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-progress-checkbox:checked + .task-label::after,
-                .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox:checked + .task-label::after {
-                  color: #fcfcfc;
-                  opacity: 1; }
-            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox + .task-label {
-              border: 1px solid #171716; }
-              @media (max-width: 460px) {
-                .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox + .task-label {
-                  border-radius: 1px; } }
-            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox:checked + .task-label {
-              background-color: #131313; }
-              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-done-checkbox:checked + .task-label::after {
+              background-color: white; }
+          .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-state-name.orange-state::before {
+            left: -50%;
+            background-color: #ff6161; }
+          .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-new-checkbox,
+          .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-progress-checkbox,
+          .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-done-checkbox {
+            display: none; }
+            .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-new-checkbox:checked + .task-label,
+            .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-progress-checkbox:checked + .task-label,
+            .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-done-checkbox:checked + .task-label {
+              background-color: #f29e70; }
+              .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-new-checkbox:checked + .task-label::after,
+              .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-progress-checkbox:checked + .task-label::after,
+              .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-done-checkbox:checked + .task-label::after {
                 color: #fcfcfc;
                 opacity: 1; }
-            .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-label {
-              height: 1.2rem;
-              position: relative;
-              width: 1.2rem;
-              border-radius: 2px;
-              display: block;
-              align-self: center;
-              border: 1px solid #f29e70; }
-              @media (max-width: 460px) {
-                .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-label {
-                  border-radius: 2px; } }
-              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-label:hover {
-                cursor: pointer; }
-              .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards .daily-cards .task-card-edit .task-label::after {
-                content: "\2713";
-                position: absolute;
-                top: -25%;
-                right: 20%;
-                opacity: 0; }
+          .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-done-checkbox + .task-label {
+            border: 1px solid #171716; }
+            @media (max-width: 460px) {
+              .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-done-checkbox + .task-label {
+                border-radius: 1px; } }
+          .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-done-checkbox:checked + .task-label {
+            background-color: #131313; }
+            .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-done-checkbox:checked + .task-label::after {
+              color: #fcfcfc;
+              opacity: 1; }
+          .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-label {
+            height: 1.2rem;
+            position: relative;
+            width: 1.2rem;
+            border-radius: 2px;
+            display: block;
+            align-self: center;
+            border: 1px solid #f29e70; }
+            @media (max-width: 460px) {
+              .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-label {
+                border-radius: 2px; } }
+            .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-label:hover {
+              cursor: pointer; }
+            .project-edit .team-info-daily .daily-tasks .daily-cards .task-card-edit .task-label::after {
+              content: "\2713";
+              position: absolute;
+              top: -25%;
+              right: 20%;
+              opacity: 0; }

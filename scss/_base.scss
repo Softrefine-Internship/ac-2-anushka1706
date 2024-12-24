@@ -25,6 +25,9 @@ body {
   grid-template-columns:auto 1fr;
   grid-template-rows: minmax(0, 1fr);  
   @include response(s-5-phone){
-    grid-template-columns: max-content 1fr;
+    grid-template-columns:max-content 1fr;                              
   }
-}
+  @include response(phone){
+    grid-template-rows: auto 1fr ;
+  }
+}                           
