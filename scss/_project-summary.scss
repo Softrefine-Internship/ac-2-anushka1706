@@ -40,7 +40,7 @@
     }
     .search {
       position: relative;
-      z-index:-1;
+      z-index:500;
       .search-bar {
         width: 100%;
         border: 1px solid $light-border;

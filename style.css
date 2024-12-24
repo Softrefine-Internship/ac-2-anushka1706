@@ -289,7 +289,7 @@ main {
       text-transform: capitalize; }
     .project-summary .header .search {
       position: relative;
-      z-index: -1; }
+      z-index: 500; }
       .project-summary .header .search .search-bar {
         width: 100%;
         border: 1px solid #f1ede8;
