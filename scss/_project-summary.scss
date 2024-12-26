@@ -49,7 +49,7 @@
         border-radius: 50px;
         &::placeholder {
           color: #b1b1b1;
-        }
+        } 
         @include response(phone) {
           padding-left: 5rem;
         }

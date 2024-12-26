@@ -225,7 +225,9 @@
     .info {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
       border-radius: 15px;
+      gap:5px; 
       // background-color: red;
       box-shadow: 0 0 20px rgba(226, 225, 225, 0.584);
       padding: 2rem;
