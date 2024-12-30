@@ -16,6 +16,7 @@ body {
   font-family: "Poppins";
   height: 100vh;
   display: grid;
+  position: relative;
   grid-template-columns: auto 1fr;
   grid-template-rows: minmax(0, 1fr); }
   @media (max-width: 370px) {
@@ -25,6 +26,9 @@ body {
     body {
       grid-template-rows: auto 1fr; } }
 
+body:has(.navigation .logo-div > .nav-open-close-icon > .logo-checkbox:checked) {
+  grid-template-rows: 11rem auto; }
+
 main {
   grid-column: 2/-1;
   display: grid;
@@ -33,7 +37,7 @@ main {
   max-height: 100%;
   overflow-y: auto;
   max-width: 100%;
-  transition: all 0.5s; }
+  transition: grid 0.5s ease; }
   @media (max-width: 1185px) {
     main {
       grid-template-columns: minmax(0, 1fr); } }
@@ -46,12 +50,19 @@ main {
   @media (max-width: 770px) {
     .navigation .side-navigation:has(.nav-li.active-li:not(:hover)) .side-nav .nav-li.active-li .side-nav-icon {
       color: #5a5a5a; } }
-  .navigation .side-navigation:has(.logo-div > .logo-checkbox:checked) .side-nav,
-  .navigation .side-navigation:has(.logo-div > .logo-checkbox:checked) .side-nav-help,
-  .navigation .side-navigation:has(.logo-div > .logo-checkbox:checked) .sub-menu-nav {
+  .navigation .side-navigation:has(
+  .logo-div > .nav-open-close-icon > .logo-checkbox:checked
+) .side-nav,
+  .navigation .side-navigation:has(
+  .logo-div > .nav-open-close-icon > .logo-checkbox:checked
+) .side-nav-help,
+  .navigation .side-navigation:has(
+  .logo-div > .nav-open-close-icon > .logo-checkbox:checked
+) .sub-menu-nav {
     display: none; }
   @media (max-width: 770px) {
-    .navigation .side-navigation:has(.nav-li.active-li:hover) ~ .sub-menu-nav {
+    .navigation .side-navigation:has(.nav-li.active-li .active-nav-checkbox:checked)
+~ .sub-menu-nav {
       display: block;
       opacity: 1;
       position: absolute;
@@ -60,7 +71,8 @@ main {
       gap: 3rem;
       transform: translateX(100%);
       height: 100%; }
-      .navigation .side-navigation:has(.nav-li.active-li:hover) ~ .sub-menu-nav .sub-menu {
+      .navigation .side-navigation:has(.nav-li.active-li .active-nav-checkbox:checked)
+~ .sub-menu-nav .sub-menu {
         margin-top: 3rem; } }
   .navigation .side-navigation {
     display: flex;
@@ -68,31 +80,54 @@ main {
     flex-direction: column;
     align-items: center;
     background-color: #fcfcfc;
-    padding-top: 1rem;
-    padding-bottom: 1rem; }
+    padding-top: 1rem; }
     .navigation .side-navigation .logo-div {
-      border-bottom: 1px solid #e2e1e1;
       padding-bottom: 1.2rem;
       align-self: stretch;
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center; }
-      .navigation .side-navigation .logo-div .logo-checkbox {
-        display: none; }
-      .navigation .side-navigation .logo-div .logo-label {
-        pointer-events: none; }
-        @media (max-width: 770px) {
-          .navigation .side-navigation .logo-div .logo-label {
-            pointer-events: auto; } }
-        .navigation .side-navigation .logo-div .logo-label .side-nav-logo-img {
-          height: 3.8rem;
-          width: 3.8rem;
-          transform: rotate(90deg); }
+      @media (max-width: 770px) {
+        .navigation .side-navigation .logo-div {
+          padding-top: 6px; } }
+      .navigation .side-navigation .logo-div .side-nav-logo-img {
+        height: 3.8rem;
+        width: 3.8rem;
+        transform: rotate(90deg); }
       @media (max-width: 1056px) {
         .navigation .side-navigation .logo-div {
           padding-bottom: 1.7rem; } }
       @media (max-width: 770px) {
         .navigation .side-navigation .logo-div {
           padding-bottom: 1rem; } }
+      .navigation .side-navigation .logo-div .nav-open-close-icon {
+        display: flex;
+        display: none;
+        margin-left: 5px;
+        margin-top: 1rem; }
+        @media (max-width: 770px) {
+          .navigation .side-navigation .logo-div .nav-open-close-icon {
+            display: block; } }
+        .navigation .side-navigation .logo-div .nav-open-close-icon .logo-checkbox {
+          display: none; }
+        .navigation .side-navigation .logo-div .nav-open-close-icon .logo-label {
+          align-self: stretch;
+          display: flex;
+          justify-content: center;
+          pointer-events: none; }
+          .navigation .side-navigation .logo-div .nav-open-close-icon .logo-label .nav-logo-icon {
+            font-size: 2.5rem;
+            color: #9D9D9D;
+            transform: rotateY(180deg);
+            transition: all 0.5s; }
+            .navigation .side-navigation .logo-div .nav-open-close-icon .logo-label .nav-logo-icon:not(:first-child) {
+              margin-left: -1.5rem; }
+          @media (max-width: 770px) {
+            .navigation .side-navigation .logo-div .nav-open-close-icon .logo-label {
+              pointer-events: auto; } }
+        .navigation .side-navigation .logo-div .nav-open-close-icon .logo-checkbox:checked + .logo-label .nav-logo-icon {
+          transform: rotateY(0deg); }
     .navigation .side-navigation .side-nav {
       font-size: 2rem;
       display: flex;
@@ -106,6 +141,9 @@ main {
         transition: background-color 0.4s; }
         .navigation .side-navigation .side-nav .nav-li:hover {
           background-color: #F2ECE2; }
+        .navigation .side-navigation .side-nav .nav-li .active-nav-checkbox,
+        .navigation .side-navigation .side-nav .nav-li .nav-checkbox {
+          display: none; }
         .navigation .side-navigation .side-nav .nav-li .side-nav-icon {
           color: #5a5a5a;
           transition: color 0.4s; }
@@ -134,6 +172,7 @@ main {
       border-radius: 50%;
       color: #fcfcfc;
       padding: 3px 1rem;
+      margin-bottom: 1rem;
       transition: all 0.4s; }
       .navigation .side-navigation .side-nav-help:hover {
         box-shadow: 0 0 10px #686767; }
@@ -205,10 +244,6 @@ main {
           font-size: 1.2rem;
           flex-shrink: 1;
           transition: height 0.5s; }
-          @media (max-width: 770px) {
-            .navigation .sub-menu-nav .sub-menu .sub-menu-links .open-menu-li {
-              height: auto;
-              display: block; } }
           .navigation .sub-menu-nav .sub-menu .sub-menu-links .open-menu-li .open-menu-links {
             list-style: none;
             display: flex;
@@ -229,28 +264,81 @@ main {
               font-weight: 600;
               color: #171716; }
 
-.navigation:has(.logo-div > .logo-checkbox:checked) + .logo-label {
+.navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked)
++ .logo-label {
   height: 5rem;
   grid-row: 1/-1;
   position: relative;
   z-index: 10000; }
 
-.navigation:has(.logo-div > .logo-checkbox:checked) .logo-div {
-  margin-left: 2rem;
-  background-color: none; }
+.navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked) .logo-div {
+  background-color: none;
+  margin-left: 8px;
+  border: none; }
 
-.navigation:has(.logo-div > .logo-checkbox:unchecked) {
+.navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:unchecked) {
   grid-column: 2/-1; }
 
-.navigation:has(.logo-div > .logo-checkbox:checked) ~ main {
+.navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked)
+~ main {
   grid-column: 1/-1; }
+  @media (max-width: 770px) {
+    .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked)
+~ main .project-summary .recent-reminder {
+      padding-left: 1.5rem;
+      padding-right: 0rem; } }
+  .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked)
+~ main .project-summary .project-edit__top {
+    position: absolute;
+    top: 0%;
+    left: 8%;
+    justify-content: space-between;
+    display: flex;
+    width: 90%;
+    align-items: end;
+    margin-left: 1rem;
+    padding-bottom: 1rem; }
+    .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked)
+~ main .project-summary .project-edit__top .tab-top-opts {
+      padding-right: 1rem; }
+      @media (max-width: 535px) {
+        .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked)
+~ main .project-summary .project-edit__top .tab-top-opts .edit-opt-top {
+          align-self: flex-end; } }
+    @media (max-width: 535px) {
+      .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked)
+~ main .project-summary .project-edit__top {
+        margin-left: 2rem;
+        align-items: start; }
+        .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked)
+~ main .project-summary .project-edit__top .header {
+          margin-top: 6rem; } }
+  .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked)
+~ main .header {
+    margin-top: 2rem; }
 
-@media (max-width: 770px) {
-  .navigation:has(.logo-div > .logo-checkbox:unchecked) ~ main .project-summary {
-    padding-top: 2rem; } }
-
-.navigation:has(.logo-div > .logo-checkbox:checked) ~ main .project-summary {
-  padding-top: 0rem; }
+.navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:unchecked)
+~ main .project-summary {
+  background-color: red; }
+  @media (max-width: 770px) {
+    .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:unchecked)
+~ main .project-summary .recent-reminder {
+      padding-left: 0rem;
+      padding-right: 0rem; } }
+  .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:unchecked)
+~ main .project-summary .project-edit__top {
+    padding-bottom: 1rem; }
+    @media (max-width: 525px) {
+      .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:unchecked)
+~ main .project-summary .project-edit__top .tab-top-opts {
+        align-items: flex-end; }
+        .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:unchecked)
+~ main .project-summary .project-edit__top .tab-top-opts .edit-opt-top {
+          align-self: flex-end; } }
+  .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:unchecked)
+~ main .project-summary .user-profile-add .user-top {
+    align-self: flex-end;
+    background-color: red; }
 
 .project-summary {
   display: flex;
@@ -266,23 +354,76 @@ main {
       .project-summary .project-edit__top {
         display: flex;
         padding-left: 0rem;
+        align-items: start;
         padding-right: 0rem;
-        justify-content: space-between; } }
-    .project-summary .project-edit__top .user-profile-add {
+        justify-content: space-between;
+        flex-direction: row; }
+        .project-summary .project-edit__top .user-profile-add {
+          order: 1;
+          gap: 2rem; }
+          .project-summary .project-edit__top .user-profile-add .add-project {
+            display: none; }
+        .project-summary .project-edit__top .tab-top-opts {
+          order: 2;
+          display: flex;
+          gap: 2rem;
+          align-items: center; }
+          .project-summary .project-edit__top .tab-top-opts .edit-opt-top {
+            order: 2;
+            padding-top: 0rem;
+            align-self: center; }
+          .project-summary .project-edit__top .tab-top-opts .add-project-top {
+            background-color: #F0894D;
+            border: none;
+            border-radius: 30px;
+            color: #fcfcfc;
+            text-transform: capitalize;
+            padding: 1rem 2rem;
+            transition: background-color 0.4s; } }
+      @media (max-width: 1185px) and (max-width: 460px) {
+        .project-summary .project-edit__top .tab-top-opts .add-project-top {
+          padding: 1rem; } }
+    @media (max-width: 1185px) {
+            .project-summary .project-edit__top .tab-top-opts .add-project-top:hover {
+              cursor: pointer;
+              background-color: #ec6a1e; } }
+    @media (max-width: 770px) {
+      .project-summary .project-edit__top {
+        padding-top: 2rem;
+        padding-right: 1rem;
+        padding-left: 1rem; } }
+    @media (max-width: 535px) {
+      .project-summary .project-edit__top .tab-top-opts {
+        flex-direction: column; }
+        .project-summary .project-edit__top .tab-top-opts .add-project-top {
+          order: 2; }
+        .project-summary .project-edit__top .tab-top-opts .edit-opt-top {
+          order: 1;
+          align-self: flex-end; } }
+    .project-summary .project-edit__top .tab-top-opts .user-profile-add {
       flex-wrap: nowrap;
       justify-content: space-between; }
-      .project-summary .project-edit__top .user-profile-add .user-top {
+      .project-summary .project-edit__top .tab-top-opts .user-profile-add .user-top {
         flex-basis: 30%;
-        justify-content: end; }
-      .project-summary .project-edit__top .user-profile-add .add-project {
+        justify-content: end;
+        align-self: flex-start; }
+      .project-summary .project-edit__top .tab-top-opts .user-profile-add .add-project {
         border-radius: 15px;
         padding: 8px;
         align-self: center; }
+  @media (max-width: 770px) {
+    .project-summary {
+      padding: 0px;
+      padding-right: 1rem; } }
   .project-summary .header {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     flex-basis: auto; }
+    @media (max-width: 770px) {
+      .project-summary .header {
+        padding-left: 1rem;
+        padding-right: 1rem; } }
     .project-summary .header .date {
       font-size: 1.7rem;
       font-weight: 600;
@@ -301,9 +442,6 @@ main {
         @media (max-width: 770px) {
           .project-summary .header .search .search-bar {
             padding-left: 5rem; } }
-        @media (max-width: 460px) {
-          .project-summary .header .search .search-bar {
-            width: 70%; } }
         .project-summary .header .search .search-bar:focus {
           outline: none;
           border: 1px solid #f29e70; }
@@ -805,7 +943,7 @@ main {
       .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-auto-rows: 20rem;
+        grid-auto-rows: 18rem;
         padding: 2rem 3rem;
         overflow-y: scroll;
         flex-basis: 100%;
@@ -822,11 +960,11 @@ main {
         @media (max-width: 1185px) {
           .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
             grid-template-columns: 1fr 1fr 1fr;
-            grid-auto-rows: 75%; } }
+            grid-auto-rows: 85%; } }
         @media (max-width: 985px) {
           .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
             grid-template-columns: 1fr 1fr 1fr;
-            grid-auto-rows: 60%; } }
+            grid-auto-rows: 50%; } }
         @media (max-width: 860px) {
           .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
             grid-template-columns: 1fr 1fr;
@@ -838,15 +976,31 @@ main {
         @media (max-width: 610px) {
           .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
             grid-template-columns: 1fr 1fr 1fr;
-            grid-auto-rows: 65%; } }
+            grid-auto-rows: 60%; } }
         @media (max-width: 535px) {
           .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
             grid-template-columns: 1fr 1fr;
-            grid-auto-rows: 55%; } }
-        @media (max-width: 370px) {
+            grid-auto-rows: 50%; } }
+        @media (max-width: 460px) {
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+            grid-template-columns: 1fr 1fr;
+            grid-auto-rows: 40%; } }
+        @media (max-width: 410px) {
           .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
             grid-template-columns: 1fr 1fr;
             grid-auto-rows: 35%; } }
+        @media (max-width: 380px) {
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+            grid-template-columns: 1fr 1fr;
+            grid-auto-rows: 32%; } }
+        @media (max-width: 340px) {
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+            grid-template-columns: 1fr 1fr;
+            grid-auto-rows: 23%; } }
+        @media (max-width: 370px) {
+          .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards {
+            grid-template-columns: 1fr;
+            grid-auto-rows: 30%; } }
         .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards::-webkit-scrollbar {
           width: 5px; }
         .project-edit .team-info-daily .daily-tasks .daily-tasks-all-cards::-webkit-scrollbar-thumb {

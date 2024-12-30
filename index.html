@@ -16,49 +16,86 @@
     <section class="navigation">
       <div class="side-navigation">
         <div class="logo-div">
-          <input type="checkbox" id="logo-check" class="logo-checkbox" unchecked/>
-          <label for="logo-check" class="logo-label"
-            ><img src="img/logo.jpg" alt="logo" class="side-nav-logo-img"
-          /></label>
+         <img src="img/logo.jpg" alt="logo" class="side-nav-logo-img"
+          />
+          <div class="nav-open-close-icon">
+            <input
+            type="checkbox"
+            id="logo-check"
+            class="logo-checkbox"
+            unchecked
+          />
+          <label for="logo-check" class="logo-label">
+            <ion-icon
+              class="nav-logo-icon"
+              name="chevron-forward-outline"  
+            ></ion-icon>
+            <ion-icon
+              class="nav-logo-icon"
+              name="chevron-forward-outline"
+            ></ion-icon></label> 
+          </div>
         </div>
         <ul class="side-nav">
           <li class="nav-li active-li">
-            <a href="#">
-              <ion-icon class="side-nav-icon" name="home-outline"></ion-icon
-            ></a>
-          </li>
-          <li class="nav-li">
-            <a href="#">
-              <ion-icon class="side-nav-icon" name="people-outline"></ion-icon>
+            <a href="#"
+              ><input
+                type="checkbox"
+                id="active-nav-checkbox"
+                class="active-nav-checkbox"
+              />
+              <label for="active-nav-checkbox" class="nav-check-label">
+                <ion-icon class="side-nav-icon" name="home-outline"></ion-icon
+              ></label>
             </a>
           </li>
           <li class="nav-li">
-            <a href="#">
-              <ion-icon
-                class="side-nav-icon"
-                name="calendar-outline"
-              ></ion-icon>
+            <a href="#"
+              ><input type="checkbox" id="nav-checkbox" class="nav-checkbox" />
+              <label for="nav-checkbox" class="nav-check-label">
+                <ion-icon class="side-nav-icon" name="people-outline"></ion-icon
+              ></label>
             </a>
           </li>
           <li class="nav-li">
-            <a href="#">
-              <ion-icon
-                class="side-nav-icon"
-                name="checkbox-outline"
-              ></ion-icon>
+            <a href="#"
+              ><input type="checkbox" id="nav-checkbox" class="nav-checkbox" />
+              <label for="nav-checkbox" class="nav-check-label">
+                <ion-icon
+                  class="side-nav-icon"
+                  name="calendar-outline"
+                ></ion-icon
+              ></label>
             </a>
           </li>
           <li class="nav-li">
-            <a href="#">
-              <ion-icon class="side-nav-icon" name="time-outline"></ion-icon>
+            <a href="#"
+              ><input type="checkbox" id="nav-checkbox" class="nav-checkbox" />
+              <label for="nav-checkbox" class="nav-check-label">
+                <ion-icon
+                  class="side-nav-icon"
+                  name="checkbox-outline"
+                ></ion-icon
+              ></label>
             </a>
           </li>
           <li class="nav-li">
-            <a href="#">
-              <ion-icon
-                class="side-nav-icon"
-                name="chatbubble-outline"
-              ></ion-icon>
+            <a href="#"
+              ><input type="checkbox" id="nav-checkbox" class="nav-checkbox" />
+              <label for="nav-checkbox" class="nav-check-label">
+                <ion-icon class="side-nav-icon" name="time-outline"></ion-icon
+              ></label>
+            </a>
+          </li>
+          <li class="nav-li">
+            <a href="#"
+              ><input type="checkbox" id="nav-checkbox" class="nav-checkbox" />
+              <label for="nav-checkbox" class="nav-check-label">
+                <ion-icon
+                  class="side-nav-icon"
+                  name="chatbubble-outline"
+                ></ion-icon
+              ></label>
             </a>
           </li>
         </ul>
@@ -142,7 +179,10 @@
     <main>
       <div class="project-summary">
         <section class="project-edit__top">
-          <button class="edit-opt-top">&#9679; &#9679; &#9679;</button>
+          <div class="tab-top-opts">
+            <button class="add-project-top">add project</button>
+            <button class="edit-opt-top">&#9679; &#9679; &#9679;</button>
+          </div>
           <div class="user-profile-add">
             <button class="add-project">add project</button>
             <div class="user-top">

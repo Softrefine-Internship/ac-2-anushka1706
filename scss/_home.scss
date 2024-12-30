@@ -4,9 +4,9 @@ main{
     grid-template-columns: 1.4fr 1fr; 
     grid-template-rows: 100%;
     max-height:100%;  
-    overflow-y:auto;   
+    overflow-y:auto;     
     max-width: 100%;     
-    transition:all 0.5s;
+    transition: grid 0.5s ease;  
     // z-index: 1;               
     @include response(tab-port){
         grid-template-columns:minmax(0, 1fr); 

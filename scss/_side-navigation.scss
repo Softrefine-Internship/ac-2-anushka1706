@@ -14,14 +14,17 @@
       }
     }
   }
-  .side-navigation:has(.logo-div > .logo-checkbox:checked) {
+  .side-navigation:has(
+      .logo-div > .nav-open-close-icon > .logo-checkbox:checked
+    ) {
     .side-nav,
     .side-nav-help,
     .sub-menu-nav {
       display: none;
     }
   }
-  .side-navigation:has(.nav-li.active-li:hover) ~ .sub-menu-nav {
+  .side-navigation:has(.nav-li.active-li .active-nav-checkbox:checked)
+    ~ .sub-menu-nav {
     @include response(phone) {
       display: block;
       opacity: 1;
@@ -43,32 +46,62 @@
     align-items: center;
     background-color: $white-primary;
     padding-top: 1rem;
-    padding-bottom: 1rem;
     .logo-div {
-      border-bottom: 1px solid rgb(226, 225, 225);
       padding-bottom: 1.2rem;
       align-self: stretch;
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      .logo-checkbox {
-        display: none;
+      @include response(phone) {
+        padding-top: 6px;
       }
-      .logo-label {
-        pointer-events: none;
-        @include response(phone) {
-          pointer-events: auto;
-        }
-        .side-nav-logo-img {
-          height: 3.8rem;
-          width: 3.8rem;
-          transform: rotate(90deg);
-        }
+      .side-nav-logo-img {
+        height: 3.8rem;
+        width: 3.8rem;
+        transform: rotate(90deg);
       }
       @include response(s-tab-port) {
         padding-bottom: 1.7rem;
       }
       @include response(phone) {
         padding-bottom: 1rem;
+      }
+      .nav-open-close-icon {
+        display: flex;
+        display: none;
+        margin-left: 5px;
+        margin-top: 1rem;
+        @include response(phone) {
+          display: block;
+        }
+        .logo-checkbox {
+          display: none;
+        }
+        .logo-label {
+          // border-bottom: 1px solid rgb(226, 225, 225)
+          align-self: stretch;
+          display: flex;
+          justify-content: center;
+          pointer-events: none;
+          .nav-logo-icon {
+            font-size: 2.5rem;
+            color: $text-grey-light;
+            transform: rotateY(180deg);
+            transition: all 0.5s;
+            &:not(:first-child) {
+              margin-left: -1.5rem;
+            }
+          }
+          @include response(phone) {
+            pointer-events: auto;
+          }
+        }
+        .logo-checkbox:checked + .logo-label {
+          .nav-logo-icon {
+            transform: rotateY(0deg);
+          }
+        }
       }
     }
     .side-nav {
@@ -84,6 +117,10 @@
         transition: background-color 0.4s;
         &:hover {
           background-color: $nav-primary;
+        }
+        .active-nav-checkbox,
+        .nav-checkbox {
+          display: none;
         }
         .side-nav-icon {
           color: #5a5a5a;
@@ -123,6 +160,7 @@
       border-radius: 50%;
       color: $white-primary;
       padding: 3px 1rem;
+      margin-bottom: 1rem;
       transition: all 0.4s;
       &:hover {
         // background-color: $white-primary;
@@ -137,7 +175,7 @@
     gap: 3rem;
     z-index: 10000;
     transition: opacity 0.5s;
-    padding-top: 1rem;
+    padding-top: 1rem;  
     background-color: $nav-primary;
     @include response(laptop) {
       width: 250px;
@@ -212,10 +250,10 @@
           // flex-grow: 1;
           flex-shrink: 1;
           transition: height 0.5s;
-          @include response(phone) {
-            height: auto;
-            display: block;
-          }
+          // @include response(phone) {
+          //   height: auto;
+          //   display: block;
+          // }
           .open-menu-links {
             list-style: none;
             display: flex;
@@ -244,33 +282,91 @@
     }
   }
 }
-.navigation:has(.logo-div > .logo-checkbox:checked) + .logo-label {
+.navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked)
+  + .logo-label {
   height: 5rem;
   grid-row: 1/-1;
   position: relative;
   z-index: 10000;
 }
-.navigation:has(.logo-div > .logo-checkbox:checked) {
+.navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked) {
   .logo-div {
-    margin-left: 2rem;
     background-color: none;
+    margin-left: 8px;
+    border: none;
   }
 }
-.navigation:has(.logo-div > .logo-checkbox:unchecked) {
+.navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:unchecked) {
   grid-column: 2/-1;
 }
-.navigation:has(.logo-div > .logo-checkbox:checked) ~ main {
+.navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:checked)
+  ~ main {
   grid-column: 1/-1;
-}
-.navigation:has(.logo-div > .logo-checkbox:unchecked) ~ main {
-  @include response(phone) {
-    .project-summary {
-      padding-top: 2rem;
+  .project-summary {
+    .recent-reminder {
+      @include response(phone) {
+        padding-left: 1.5rem;
+        padding-right: 0rem;
+      }
+    }
+    .project-edit__top {
+      position: absolute;
+      top: 0%;
+      left: 8%;
+      justify-content: space-between;
+      display: flex;
+      width: 90%;
+      align-items: end;
+      // flex-wrap: wrap;
+      margin-left: 1rem;
+      padding-bottom: 1rem;
+      .tab-top-opts {
+        @include response (s-2-phone) {
+          .edit-opt-top {
+            align-self: flex-end;
+          }  
+        }
+        padding-right: 1rem;
+      }
+      @include response(s-2-phone) {
+        margin-left: 2rem;
+        align-items: start;
+        .header {
+          margin-top: 6rem;
+        }
+      }
     }
   }
+  .header {
+    margin-top: 2rem;
+  }
 }
-.navigation:has(.logo-div > .logo-checkbox:checked) ~ main {
+.navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:unchecked)
+  ~ main {
   .project-summary {
-    padding-top: 0rem;
+    background-color: red;
+    .recent-reminder {
+      @include response(phone) {
+        padding-left: 0rem;
+        padding-right: 0rem;
+      }
+    }
+    .project-edit__top {
+      padding-bottom: 1rem;
+      @include response(s-6-phone) {
+        .tab-top-opts {
+          align-items: flex-end;
+          .edit-opt-top {
+            align-self: flex-end;
+          }
+        }
+      }
+    }
+    .user-profile-add {
+      .user-top {
+        align-self: flex-end;
+        background-color: red;
+      }
+    }
   }
 }

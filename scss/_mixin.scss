@@ -24,7 +24,28 @@
     @media (max-width: 370px) {
       @content;
     }
-  } @else if $device == tab-port {
+  }
+  @else if $device == s-9-phone {
+    @media (max-width: 410px) {
+      @content; 
+    }
+  }
+  @else if $device == s-6-phone {
+    @media (max-width:525px) {  
+      @content;   
+    }
+  }
+  @else if $device == s-8-phone {
+    @media (max-width:380px) {  
+      @content;   
+    }
+  } 
+  @else if $device == s-7-phone {
+    @media (max-width:340px) {  
+      @content;   
+    }
+  }
+  @else if $device == tab-port {
     @media (max-width: 1185px) {
       @content;
     }

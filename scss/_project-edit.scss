@@ -283,7 +283,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         // height: 100%;
-        grid-auto-rows: 20rem;
+        grid-auto-rows: 18rem;
         padding: 2rem 3rem;
         overflow-y: scroll;
         // padding-top: 0rem;
@@ -302,12 +302,12 @@
         }
         @include response(tab-port) {
           grid-template-columns: 1fr 1fr 1fr;
-          grid-auto-rows: 75%;
+          grid-auto-rows: 85%;
         }
         @include response(s-2-tab-port) {
           grid-template-columns: 1fr 1fr 1fr;
-          grid-auto-rows: 60%;
-        }
+          grid-auto-rows: 50%;   
+        }     
         @include response(s-tab-3-port) {
           grid-template-columns: 1fr 1fr;
           grid-auto-rows: 50%;
@@ -318,16 +318,32 @@
         }
         @include response(s-phone) {
           grid-template-columns: 1fr 1fr 1fr;
-          grid-auto-rows: 65%;
-        }
+          grid-auto-rows: 60%; 
+        }  
         @include response(s-2-phone) {
           grid-template-columns: 1fr 1fr;
-          grid-auto-rows: 55%;
+          grid-auto-rows: 50%;
         }
-        @include response(s-5-phone) {
+        @include response(s-3-phone) {   
           grid-template-columns: 1fr 1fr;
-          grid-auto-rows: 35%;
+          grid-auto-rows:40%;  
         }
+        @include response(s-9-phone) {                
+          grid-template-columns:1fr 1fr; 
+          grid-auto-rows:35%;  
+        }          
+        @include response(s-8-phone) {
+          grid-template-columns: 1fr 1fr;
+          grid-auto-rows:32%;        
+        }
+        @include response(s-7-phone) {
+          grid-template-columns:1fr 1fr; 
+          grid-auto-rows:23%;    
+        }       
+        @include response(s-5-phone) {     
+          grid-template-columns:1fr ; 
+          grid-auto-rows:30%;  
+        }  
         &::-webkit-scrollbar {
           width: 5px;
         }

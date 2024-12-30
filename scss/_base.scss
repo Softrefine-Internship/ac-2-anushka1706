@@ -5,29 +5,34 @@
 }
 html {
   font-size: 62.5%;
-  // @include response(tab-port) {  
+  // @include response(tab-port) {
   //   font-size: 55.7%;
   // }
   // @include response(s-tab-port) {
   //   font-size: 50.7%;
-  // }     
+  // }
   @include response(s-laptop) {
     font-size: 60%;
   }
-  @include response(phone) {     
+  @include response(phone) {
     font-size: 50.7%;
-  } 
+  }
 }
 body {
   font-family: "Poppins";
   height: 100vh;
   display: grid;
-  grid-template-columns:auto 1fr;
-  grid-template-rows: minmax(0, 1fr);  
-  @include response(s-5-phone){
-    grid-template-columns:max-content 1fr;                              
+  position: relative;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: minmax(0, 1fr);
+  @include response(s-5-phone) {
+    grid-template-columns: max-content 1fr;
   }
-  @include response(phone){
-    grid-template-rows: auto 1fr ;
+  @include response(phone) {
+    grid-template-rows: auto 1fr;
   }
-}                           
+}
+body:has(.navigation .logo-div > .nav-open-close-icon > .logo-checkbox:checked) {
+  grid-template-rows: 11rem auto; 
+}
+   

@@ -1,24 +1,79 @@
 .project-summary {
-  .project-edit__top {    
+  .project-edit__top {
     display: none;
-    padding-top: 0rem;  
+    padding-top: 0rem;
     @include response(tab-port) {
       display: flex;
       padding-left: 0rem;
+      align-items: start;
       padding-right: 0rem;
       justify-content: space-between;
-    }
-    .user-profile-add {
-      flex-wrap: nowrap;
-      justify-content: space-between;
-      .user-top {
-        flex-basis: 30%;
-        justify-content: end;
+      // flex-wrap: wrap;
+      flex-direction: row;
+      .user-profile-add {
+        order: 1;
+        gap: 2rem;
+        .add-project {
+          display: none;
+        }
       }
-      .add-project {
-        border-radius: 15px;
-        padding: 8px;
-        align-self: center;
+      .tab-top-opts {
+        order: 2;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        .edit-opt-top {
+          order: 2;
+          padding-top: 0rem;
+          align-self: center;
+        }
+        .add-project-top {
+          background-color: $orange-primary;
+          border: none;
+          border-radius: 30px;
+          color: $white-primary;
+          text-transform: capitalize;
+          padding: 1rem 2rem;
+          transition: background-color 0.4s;
+          @include response(s-3-phone) {
+            padding: 1rem;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: darken($orange-primary, 10%);
+          }
+        }
+      }
+    }
+    @include response(phone) {
+      padding-top: 2rem;
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+    .tab-top-opts {
+      @include response(s-2-phone) {
+        flex-direction: column;   
+        .add-project-top {
+          order: 2;
+        }
+        .edit-opt-top {
+          order: 1;
+          align-self: flex-end;
+        }
+      }
+      .user-profile-add {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        .user-top {
+          flex-basis: 30%;
+          justify-content: end;
+          align-self: flex-start;
+        }
+        .add-project {
+          border-radius: 15px;
+          padding: 8px;
+          align-self: center;
+        }
       }
     }
   }
@@ -28,11 +83,19 @@
   padding: 2rem 3rem;
   padding-bottom: 2rem;
   max-height: 100%;
+  @include response(phone) {
+    padding: 0px;
+    padding-right: 1rem;
+  }
   .header {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     flex-basis: auto;
+    @include response(phone) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
     .date {
       font-size: 1.7rem;
       font-weight: 600;
@@ -40,7 +103,7 @@
     }
     .search {
       position: relative;
-      z-index:500;
+      z-index: 500;
       .search-bar {
         width: 100%;
         border: 1px solid $light-border;
@@ -49,12 +112,9 @@
         border-radius: 50px;
         &::placeholder {
           color: #b1b1b1;
-        } 
+        }
         @include response(phone) {
           padding-left: 5rem;
-        }
-        @include response(s-3-phone) {
-          width: 70%;
         }
         &:focus {
           outline: none;
@@ -100,6 +160,7 @@
     gap: 1rem;
     // flex-basis: 60%;
     // height:60%;
+
     height: max-content;
     &__header {
       display: flex;
@@ -160,7 +221,7 @@
           flex-direction: column;
           gap: 3rem;
           .img-opts {
-            display: flex;  
+            display: flex;
             justify-content: space-between;
             .client-card-imgs {
               .client-img {
