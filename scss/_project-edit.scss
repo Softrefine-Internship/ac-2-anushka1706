@@ -294,39 +294,39 @@
         row-gap: 2rem;
 
         @include response(s-laptop) {
-          grid-template-columns: 1fr;
+          // grid-template-columns: 1fr;
         }
         @include response(laptop) {
-          grid-template-columns: 1fr;
-          grid-auto-rows:40%;    
+          // grid-template-columns: 1fr;
+          grid-auto-rows:15rem;    
         }
         @include response(tab-port) {
           grid-template-columns: 1fr 1fr 1fr;
-          grid-auto-rows: 85%;
+          grid-auto-rows: 22rem;   
         }
         @include response(s-2-tab-port) {
           grid-template-columns: 1fr 1fr 1fr;
-          grid-auto-rows: 50%;   
+          grid-auto-rows: 20rem;            
         }     
         @include response(s-tab-3-port) {
           grid-template-columns: 1fr 1fr;
-          grid-auto-rows: 50%;
+          grid-auto-rows:20rem;
         }
         @include response(phone) {
           grid-template-columns: 1fr 1fr 1fr;
-          grid-auto-rows: 85%;
+          grid-auto-rows: 25rem;
         }
         @include response(s-phone) {
           grid-template-columns: 1fr 1fr 1fr;
-          grid-auto-rows: 60%; 
+          grid-auto-rows: 15rem; 
         }  
         @include response(s-2-phone) {
-          grid-template-columns: 1fr 1fr;
-          grid-auto-rows: 50%;
+          grid-template-columns: 1fr 1fr;            
+          grid-auto-rows:23rem;
         }
         @include response(s-3-phone) {   
           grid-template-columns: 1fr 1fr;
-          grid-auto-rows:40%;  
+          grid-auto-rows:20rem;  
         }
         @include response(s-9-phone) {                
           grid-template-columns:1fr 1fr; 
@@ -334,14 +334,14 @@
         }          
         @include response(s-8-phone) {
           grid-template-columns: 1fr 1fr;
-          grid-auto-rows:32%;        
+          grid-auto-rows:15rem;            
         }
         @include response(s-7-phone) {
           grid-template-columns:1fr 1fr; 
-          grid-auto-rows:23%;    
+          grid-auto-rows:15rem;    
         }       
         @include response(s-5-phone) {     
-          grid-template-columns:1fr ; 
+          grid-template-columns:1fr ;          
           grid-auto-rows:30%;  
         }  
         &::-webkit-scrollbar {
@@ -351,7 +351,7 @@
           background-color: $orange-light-2;
           border-radius: 10px;
         }
-        &::-webkit-scrollbar-track {
+        &::-webkit-scrollbar-track {  
           background-color: white;
         }
       }
