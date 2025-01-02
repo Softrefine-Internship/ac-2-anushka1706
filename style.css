@@ -82,7 +82,8 @@ main {
     background-color: #fcfcfc;
     padding-top: 1rem; }
     .navigation .side-navigation .logo-div {
-      padding-bottom: 1.2rem;
+      border-bottom: 1px solid #e2e1e1;
+      padding-bottom: 1.6rem;
       align-self: stretch;
       display: flex;
       flex-direction: column;

@@ -22,7 +22,7 @@
     .sub-menu-nav {
       display: none;
     }
-  }
+  }         
   .side-navigation:has(.nav-li.active-li .active-nav-checkbox:checked)
     ~ .sub-menu-nav {
     @include response(phone) {
@@ -47,7 +47,8 @@
     background-color: $white-primary;
     padding-top: 1rem;
     .logo-div {
-      padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgb(226, 225, 225);
+      padding-bottom: 1.6rem; 
       align-self: stretch;
       display: flex;
       flex-direction: column;
@@ -79,7 +80,6 @@
           display: none;
         }
         .logo-label {
-          // border-bottom: 1px solid rgb(226, 225, 225)
           align-self: stretch;
           display: flex;
           justify-content: center;
