@@ -20,9 +20,10 @@
     .side-nav,
     .side-nav-help,
     .sub-menu-nav {
-      display: none;
+      // display: none;
+      transform: translateX(-170%);
     }
-  }         
+  }
   .side-navigation:has(.nav-li.active-li .active-nav-checkbox:checked)
     ~ .sub-menu-nav {
     @include response(phone) {
@@ -44,11 +45,14 @@
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
+    transition: all 5s;
+    transform: translateX(0%);
+    transition: all 0.5s;
     background-color: $white-primary;
     padding-top: 1rem;
     .logo-div {
       border-bottom: 1px solid rgb(226, 225, 225);
-      padding-bottom: 1.6rem; 
+      padding-bottom: 1.6rem;
       align-self: stretch;
       display: flex;
       flex-direction: column;
@@ -108,6 +112,8 @@
       font-size: 2rem;
       display: flex;
       flex-direction: column;
+      transform: translateX(0%);
+      transition: transform 0.5s;     
       align-items: center;
       .nav-li {
         padding: 1.5rem 2rem;
@@ -116,8 +122,8 @@
         text-align: center;
         transition: background-color 0.4s;
         &:hover {
-          background-color: $nav-primary;
-        }
+          background-color: $nav-primary;     
+        }  
         .active-nav-checkbox,
         .nav-checkbox {
           display: none;
@@ -175,7 +181,7 @@
     gap: 3rem;
     z-index: 10000;
     transition: opacity 0.5s;
-    padding-top: 1rem;  
+    padding-top: 1rem;
     background-color: $nav-primary;
     @include response(laptop) {
       width: 250px;
@@ -321,10 +327,10 @@
       margin-left: 1rem;
       padding-bottom: 1rem;
       .tab-top-opts {
-        @include response (s-2-phone) {
+        @include response(s-2-phone) {
           .edit-opt-top {
             align-self: flex-end;
-          }  
+          }
         }
         padding-right: 1rem;
       }
@@ -344,7 +350,6 @@
 .navigation:has(.logo-div > .nav-open-close-icon > .logo-checkbox:unchecked)
   ~ main {
   .project-summary {
-    background-color: red;
     .recent-reminder {
       @include response(phone) {
         padding-left: 0rem;
